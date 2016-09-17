@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Adicionar Categoria Principal
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<p:panel header="Adicionar Categoria">
+
+			<center>
+				<h:form id="formul" enctype="multipart/form-data">
+					<p:message id="mensaje" for="formul"/>
+					
+					<h:panelGrid columns="2" border="0">
+
+						<h:outputText value="Nombre: *" />
+						<h:inputText value="#{categoriaManage.categoria.nombre}" maxlength="20"/>
+						
+						<h:outputText value="Seleccione Un Icono: *" />
+						<p:fileUpload value="#{categoriaManage.file}" mode="simple" style="width:250px;"/>
+
+						<h:outputText value="Descripción: " />
+						<p:inputTextarea rows="6" cols="33" value="#{categoriaManage.categoria.descripcion}"/> 
+						
+					</h:panelGrid>
+
+					<p:commandButton value="Aceptar"
+						action="#{categoriaManage.adicionarCategoria}" ajax="false" />
+				</h:form>
+			</center>
+		</p:panel>
+
+
+	</ui:define>
+
+</ui:composition>

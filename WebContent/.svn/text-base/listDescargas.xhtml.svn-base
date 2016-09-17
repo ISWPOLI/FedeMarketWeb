@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Contenido Disponible
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+
+
+		<center>
+
+
+			<h:form prependId="false" rendered="#{seguridadBean.autenticado}">
+
+				<p:dataTable id="dataTable" var="item" value="#{descargaManage.descargas}"
+					paginator="true" rows="10" emptyMessage="No Existen Contenidos!"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
+            Historia De Descargas  
+        </f:facet>
+
+					<p:column headerText="ID"> 
+						<h:outputText value="#{item.id}" />
+					</p:column>
+
+					<p:column filterBy="#{item.fecha}" headerText="Fecha" filterMatchMode="contains"> 
+						<h:outputText value="#{item.fecha}" />
+					</p:column>
+
+					<p:column filterBy="#{item.contenido.nombre}" headerText="Contenido" filterMatchMode="contains" > 
+						<h:outputText value="#{item.contenido.nombre}" />
+					</p:column>
+
+					<p:column filterBy="#{item.usuario}" headerText="UID" filterMatchMode="contains" >
+						<h:outputText value="#{item.usuario}" />
+					</p:column>
+					<p:column filterBy="#{item.nombre}" headerText="Nombre Usuario" filterMatchMode="contains" >
+						<h:outputText value="#{item.nombre}" />
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+
+
+		</center>
+
+
+
+	</ui:define>
+
+</ui:composition>

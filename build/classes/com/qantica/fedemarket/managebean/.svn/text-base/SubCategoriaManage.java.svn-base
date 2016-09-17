@@ -1,0 +1,120 @@
+package com.ethereal.fedecafe.managebean;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import com.ethereal.fedecafe.ejb.CategoriaBeanRemote;
+import com.ethereal.fedecafe.ejb.SubCategoriaBeanRemote;
+import com.ethereal.fedecafe.entidad.Categoria;
+import com.ethereal.fedecafe.entidad.SubCategoria;
+
+@ManagedBean
+@ViewScoped
+public class SubCategoriaManage {
+
+	@EJB(name = "SubCategoriaBean/remote")
+	SubCategoriaBeanRemote miEJB;
+
+	@EJB(name = "CategoriaBean/remote")
+	CategoriaBeanRemote miEJBCategoria;
+
+	SubCategoria subCategoria = new SubCategoria();
+	int id_intercategoria = -1;
+	int categoria = 1;
+	int id;
+
+	public void adicionarSubCategoria() {
+
+//		System.out.println(id_intercategoria+"    "+categoria);
+		
+		try {
+			subCategoria.setId(0);
+			subCategoria
+					.setCategoria(miEJBCategoria.buscarCategoria(categoria));
+			if (id_intercategoria != -1 ) {
+				subCategoria.setMiSubCategoria(miEJB
+						.buscarSubCategoria(id_intercategoria));
+			}
+			miEJB.adicionarSubCategoria(subCategoria);
+			subCategoria = new SubCategoria();
+			id_intercategoria = 0;
+			categoria = 1;
+
+			FacesContext.getCurrentInstance().addMessage(
+					"formul",
+
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Verifique La Información Suministrada!",
+							"SubCategoria Adicionada!"));
+
+		} catch (Exception e) {
+			e.getStackTrace();
+
+			FacesContext
+					.getCurrentInstance()
+					.addMessage(
+							"formul",
+
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,
+									"Verifique La Información Suministrada!",
+									"Se ha producido un error por favor intentelo mas tarde!"));
+		}
+
+	}
+
+	public void buscar() {
+		miEJB.buscarSubCategoria(id);
+	}
+
+	public void actualizar() {
+
+		miEJB.actualizarSubCategoria(subCategoria);
+	}
+
+	public List<Categoria> getCategorias() {
+		return miEJBCategoria.listarCategoriasServlet();
+	}
+
+	public List<SubCategoria> getCategoriasSub() {
+
+		return miEJBCategoria.listarSubCategorias(categoria);
+	}
+
+	public SubCategoria getSubCategoria() {
+		return subCategoria;
+	}
+
+	public void setSubCategoria(SubCategoria subCategoria) {
+		this.subCategoria = subCategoria;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getId_intercategoria() {
+		return id_intercategoria;
+	}
+
+	public void setId_intercategoria(int id_intercategoria) {
+		this.id_intercategoria = id_intercategoria;
+	}
+
+}

@@ -1,0 +1,32 @@
+package com.ethereal.fedecafe.managebean;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+import com.ethereal.fedecafe.dto.UsuarioDTO;
+import com.ethereal.fedecafe.ejb.UsuarioBeanRemote;
+
+@ViewScoped
+@ManagedBean
+public class ReportListUser {
+
+	@EJB(name = "UsuarioBean/remote")
+	UsuarioBeanRemote miEjbUsuario;
+
+	public List<UsuarioDTO> getListUserAcces() {
+
+		List<UsuarioDTO> lista = miEjbUsuario.listUserAcces();
+		return lista;
+	}
+
+	public String redirect() {
+
+		System.out.println("entro a redirect---->");
+		return "./ReportUser.jsf";
+
+	}
+
+}

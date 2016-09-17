@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Contenido Disponible
+	</ui:define>
+
+
+	<ui:define name="contenido">
+		<center>
+			<h:form id="form" prependId="false"
+				rendered="#{seguridadBean.autenticado}">
+				<p:message id="mensaje" for="form" />
+
+
+				<p:dataTable id="dataTable" var="item"
+					value="#{contenidoAltertManager.lista}" paginator="true" rows="10"
+					emptyMessage="No Existen Contenidos!"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
+            Contenido Disponible  
+        </f:facet>
+
+					<p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"
+						headerText="Nombre" filterMatchMode="contains">
+						<h:outputText value="#{item.nombre}" />
+					</p:column>
+
+					<p:column filterBy="#{item.version}" sortBy="#{item.version}"
+						headerText="Versión" filterMatchMode="contains">
+						<h:outputText value="#{item.version}" />
+					</p:column>
+
+					<p:column filterBy="#{item.publicacion}"
+						sortBy="#{item.publicacion}" headerText="Publicación"
+						filterMatchMode="contains">
+						<h:outputText value="#{item.publicacion}" />
+
+					</p:column>
+
+					<p:column filterBy="#{item.categoria.nombre}"
+						sortBy="#{item.categoria.nombre}" headerText="Categoria"
+						filterMatchMode="contains">
+						<h:outputText value="#{item.categoria.nombre}" />
+					</p:column>
+
+					<p:column style="width:40px">
+						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+							<p:commandButton id="selectButton" update=":form:display"
+								oncomplete="itemDialog.show()" image="images/btn_edit.png"
+								title="Editar">
+								<f:setPropertyActionListener value="#{item}"
+									target="#{contenidoAltertManager.contenido}" />
+							</p:commandButton>
+						</h:panelGrid>
+					</p:column>
+
+
+				</p:dataTable>
+
+
+				<p:dialog header="Detalle Contenido" widgetVar="itemDialog"
+					resizable="false" id="itemDlg" showEffect="fade"
+					hideEffect="explode" modal="true" width="400">
+
+
+
+					<h:panelGrid id="display" columns="2" cellpadding="4"
+						style="margin:0 auto;">
+
+						<h:outputText value="ID:" style="display:none;" />
+						<h:inputText value="#{contenidoAltertManager.contenido.id}"
+							style="display:none;" />
+
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{contenidoAltertManager.contenido.nombre}" />
+
+						<h:outputText value="Version:" />
+						<p:inputText value="#{contenidoAltertManager.contenido.version}" />
+
+						<h:outputText value="Descripcion:" />
+						<p:inputTextarea rows="6" cols="25" autoResize="false"
+							value="#{contenidoAltertManager.contenido.descripcion}" />
+
+						<h:outputText value="Roles" />
+						<h:panelGrid columns="2">
+							<h:outputText value="Caficultor" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.caficultor}" />
+							<h:outputText value="Empleado" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.empleado}" />
+							<h:outputText value="Investigador" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.investigador}" />
+							<h:outputText value="Otros" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.otros}" />
+						</h:panelGrid>
+
+					</h:panelGrid>
+
+					<p:commandButton value="Aceptar"
+						action="#{contenidoAltertManager.update}"
+						onclick="itemDialog.hide()" update="dataTable" />
+				</p:dialog>
+
+			</h:form>
+
+
+		</center>
+
+
+
+	</ui:define>
+
+</ui:composition>

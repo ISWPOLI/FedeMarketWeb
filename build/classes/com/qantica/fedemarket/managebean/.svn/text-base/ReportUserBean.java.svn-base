@@ -1,0 +1,64 @@
+package com.ethereal.fedecafe.managebean;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
+import com.ethereal.fedecafe.dto.UsuarioDTO;
+import com.ethereal.fedecafe.ejb.ComentarioBeanRemote;
+import com.ethereal.fedecafe.ejb.DescargaBeanRemote;
+import com.ethereal.fedecafe.ejb.IngresoBeanRemote;
+import com.ethereal.fedecafe.ejb.UsuarioBeanRemote;
+import com.ethereal.fedecafe.entidad.Comentario;
+import com.ethereal.fedecafe.entidad.Descarga;
+import com.ethereal.fedecafe.entidad.Ingreso;
+
+@SessionScoped
+@ManagedBean
+public class ReportUserBean {
+
+	@EJB(name = "DescargaBean/remote")
+	DescargaBeanRemote miEjbDescarga;
+
+	@EJB(name = "ComentarioBean/remote")
+	ComentarioBeanRemote miEjbComentario;
+
+	@EJB(name = "IngresoBean/remote")
+	IngresoBeanRemote miEjb;
+	
+
+	public String user="";
+	
+	public List<Comentario> getLista_Comentarios() {
+		
+		System.out.println("lista comentarios  "+user);
+		
+		return miEjbComentario.listarComentariosUsuario(user);
+	}
+
+	public List<Descarga> getLista_Descargas() {
+		
+		System.out.println("lista descarga  "+user);
+		
+		return miEjbDescarga.listDescargaUsuario(user);
+	}
+
+	public List<Ingreso> getLista_Ingresos() {
+		
+		System.out.println("lista ingreso  "+user);
+		
+		return miEjb.listarIngresos(user);
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		System.out.println("entro a cambiar user :"+user);
+		this.user = user;
+	}
+}

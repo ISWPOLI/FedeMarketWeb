@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/nueva-estructura/!svn/ver/1256/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet
+END
+ServletDestacados.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletDestacados.java
+END
+ServletAcceso.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/nueva-estructura/!svn/ver/1256/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletAcceso.java
+END
+ServletListaComentario.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletListaComentario.java
+END
+ServletCategoria.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletCategoria.java
+END
+ServletActualizarCategoria.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletActualizarCategoria.java
+END
+ServletActualizar.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletActualizar.java
+END
+ServletComentario.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletComentario.java
+END
+SevletScreenCapture.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/SevletScreenCapture.java
+END
+ServletContenido.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletContenido.java
+END
+SevletIconCategoria.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/SevletIconCategoria.java
+END
+ServletLogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/nueva-estructura/!svn/ver/1256/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletLogin.java
+END
+ServletSubCategoria.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletSubCategoria.java
+END
+ServletNoticias.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletNoticias.java
+END
+ServletDescarga.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/nueva-estructura/!svn/ver/1081/proyectos/web/FedecafeMarket/src/fedecafe/src/com/ethereal/fedecafe/servlet/ServletDescarga.java
+END

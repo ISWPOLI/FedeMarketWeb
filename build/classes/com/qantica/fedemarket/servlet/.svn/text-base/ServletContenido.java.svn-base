@@ -1,0 +1,124 @@
+package com.ethereal.fedecafe.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ethereal.fedecafe.ejb.ContenidoBeanLocal;
+import com.ethereal.fedecafe.ejb.ContenidoBeanRemote;
+import com.ethereal.fedecafe.ejb.NoticiaBeanRemote;
+import com.ethereal.fedecafe.entidad.Contenido;
+import com.ethereal.fedecafe.entidad.Noticia;
+
+/**
+ * Servlet implementation class ServletContenido
+ */
+public class ServletContenido extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	Context context;
+	// ContenidoBeanRemote miEJB;
+	ContenidoBeanLocal miEJB;
+
+	public void init() {
+		try {
+
+			context = new InitialContext();
+			miEJB = (ContenidoBeanLocal) context.lookup("ContenidoBean/local");
+
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletContenido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		try {
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<500>");
+
+			out.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		try {
+
+			System.out.println("Entro a --> Servlet Contenido");
+			
+			List<Contenido> misContenidos = miEJB.listarContenido(0);
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+
+			for (int i = 0; i < misContenidos.size(); i++) {
+
+				if (misContenidos.get(i).getSubCategoria() != null) {
+
+					out.println(misContenidos.get(i).getId() + "|"
+							+ misContenidos.get(i).getNombre() + "|"
+							+ misContenidos.get(i).getDescripcion() + "|"
+							+ misContenidos.get(i).getDescargas() + "|"
+							+ misContenidos.get(i).getVersion() + "|"
+							+ +misContenidos.get(i).getCategoria().getId()
+							+ "|"
+							+ misContenidos.get(i).getSubCategoria().getId()
+							+ "|" + misContenidos.get(i).getCaptura_1() + "|"
+							+ misContenidos.get(i).getCaptura_2() + "|"
+							+ misContenidos.get(i).getIcono() + "|"
+							+ misContenidos.get(i).getRating() + ">");
+				} else {
+					out.println(misContenidos.get(i).getId() + "|"
+							+ misContenidos.get(i).getNombre() + "|"
+							+ misContenidos.get(i).getDescripcion() + "|"
+							+ misContenidos.get(i).getDescargas() + "|"
+							+ misContenidos.get(i).getVersion() + "|"
+							+ +misContenidos.get(i).getCategoria().getId()
+							+ "|0|" + misContenidos.get(i).getCaptura_1() + "|"
+							+ misContenidos.get(i).getCaptura_2() + "|"
+							+ misContenidos.get(i).getIcono() + "|"
+							+ misContenidos.get(i).getRating() + ">");
+				}
+			}
+			out.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+}

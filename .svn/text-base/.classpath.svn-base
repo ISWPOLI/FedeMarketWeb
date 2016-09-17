@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.generic.runtimeTarget/JBoss v4.2">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aristo-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcmail-jdk14-1.38.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcmail-jdk14-138.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcprov-jdk14-1.38.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcprov-jdk14-138.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bctsp-jdk14-1.38.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/black-tie-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/blitzer-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bluesky-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cupertino-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dark-hive-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dot-luv-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/eggplant-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/excite-bike-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/facestrace-1.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/flick-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/glass-x-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hot-sneaks-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/humanity-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/iText-2.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jcommon-1.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdom-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart-1.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-3.8.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/le-frog-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/midnight-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mint-choc-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/overcast-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pepper-grinder-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-3.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.0.M2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.0.M4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/redmond-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rocket-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/smoothness-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/south-street-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/start-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/sunny-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swanky-purse-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/trontastic-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ui-darkness-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ui-lightness-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/vader-1.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_18">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/casablanca-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fedecafe.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EjbFedecafe"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

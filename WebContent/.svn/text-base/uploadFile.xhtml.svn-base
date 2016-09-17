@@ -1,0 +1,40 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+
+
+
+	<h:form>
+
+		<p:panel header="Double Combo" style="margin-bottom:10px;">
+			<h:panelGrid columns="2" cellpadding="5">
+				
+			
+				
+				
+				
+			</h:panelGrid>
+
+			<p:separator />
+
+			<p:commandButton value="Submit" 
+				actionListener="#{categoriaManage.displayLocation}" id="btnSubmit" />
+
+		</p:panel>
+
+
+
+	</h:form>
+
+
+
+
+</h:body>
+</html>

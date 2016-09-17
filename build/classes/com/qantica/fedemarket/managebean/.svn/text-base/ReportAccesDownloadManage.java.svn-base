@@ -1,0 +1,23 @@
+package com.ethereal.fedecafe.managebean;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import com.ethereal.fedecafe.ejb.IngresoBeanRemote;
+import com.ethereal.fedecafe.entidad.Ingreso;
+
+@ManagedBean
+public class ReportAccesDownloadManage {
+
+	@EJB(name = "IngresoBean/remote")
+	IngresoBeanRemote miEjb;
+	
+	public List<Ingreso> getIngresos() {
+		
+		List<Ingreso> lista = miEjb.listarIngresosSinDescarga();
+		
+		return lista;
+	}
+	
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Contenido Disponible
+	</ui:define>
+
+	<ui:define name="contenido">
+		<center>
+			<h:form id="form" prependId="false"
+				rendered="#{seguridadBean.autenticado}">
+				<p:message id="mensaje" for="form" />
+
+					<p:dataTable id="dataTable" var="item"
+						value="#{contenidoAltertManager.lista}" paginator="true" rows="10"
+						emptyMessage="No Existen Contenidos!"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15">
+						<f:facet name="header">  
+            Rating de Contenidos  
+        </f:facet>
+						<p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"
+							headerText="Nombre" filterMatchMode="contains">
+							<h:outputText value="#{item.nombre}" />
+						</p:column>
+
+						<p:column filterBy="#{item.version}" sortBy="#{item.version}"
+							headerText="Versión" filterMatchMode="contains">
+							<h:outputText value="#{item.version}" />
+						</p:column>
+
+						<p:column filterBy="#{item.descargas}"
+							sortBy="#{item.descargas}" headerText="Descargas"
+							filterMatchMode="contains">
+							<h:outputText value="#{item.descargas}" />
+
+						</p:column>
+
+						<p:column filterBy="#{item.rating}"
+							sortBy="#{item.rating}" headerText="Rating"
+							filterMatchMode="contains">
+							<h:outputText value="#{item.rating}" />
+						</p:column>
+
+					</p:dataTable>
+			</h:form>
+		</center>
+	</ui:define>
+
+</ui:composition>
