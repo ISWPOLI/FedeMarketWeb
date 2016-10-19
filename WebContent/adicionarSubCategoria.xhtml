@@ -1,0 +1,59 @@
+
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Adicionar Categoria Secundaria
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<p:panel header="Adicionar Subcategoria">
+
+			<center>
+				<h:form id="formul">
+					<p:message id="mensaje" for="formul" />
+					<h:panelGrid columns="2" border="0">
+
+						<h:outputText value="Nombre: *" />
+						<h:inputText value="#{subCategoriaManage.subCategoria.nombre}" maxlength="20"/>
+
+						<h:outputText value="Categoria: " />
+
+						<p:selectOneMenu value="#{subCategoriaManage.categoria}"
+							style="width:250px;">
+							<f:selectItems value="#{subCategoriaManage.categorias}"
+								var="item" itemLabel="#{item.nombre}" itemValue="#{item.id}" />
+							<p:ajax update="intercategorias" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Sub Categoria: *" />
+
+						<p:selectOneMenu id="intercategorias" style="width:250px;"
+							value="#{subCategoriaManage.id_intercategoria}">
+
+							<f:selectItem
+								itemLabel="Seleccione Una Subcategoria" itemValue="0"/>
+
+							<f:selectItems value="#{subCategoriaManage.categoriasSub}"
+								var="item" itemLabel="#{item.nombre}" itemValue="#{item.id}" />
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+
+					<p:commandButton value="Aceptar"
+						action="#{subCategoriaManage.adicionarSubCategoria}" ajax="false" />
+				</h:form>
+			</center>
+		</p:panel>
+
+
+	</ui:define>
+
+</ui:composition>

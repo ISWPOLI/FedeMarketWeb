@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Adicionar Contenido
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+		<p:panel id="panel" header="Adicionar Contenido">
+			<center>
+				<h:form id="formul" enctype="multipart/form-data">
+					<p:message id="mensaje" for="formul" />
+
+					<h:panelGrid columns="2" border="0">
+
+						<h:outputText value="Nombre: *" />
+						<p:inputText id="nombre_contenido"
+							value="#{contenidoManage.contenido.nombre}" style="width:250px;"
+							maxlength="20" />
+
+						<h:outputText value="Versión: *" />
+						<p:inputText value="#{contenidoManage.contenido.version}"
+							style="width:250px;" maxlength="5" />
+
+						<h:outputText value="Descripción: *" />
+						<p:inputTextarea rows="6" style="width:250px;"
+							value="#{contenidoManage.contenido.descripcion}" maxlength="150" />
+
+
+						<h:outputText value="Seleccione El Contenido: *" />
+						<p:fileUpload id="up_contenido" value="#{contenidoManage.file}"
+							sizeLimit="1000" mode="simple" style="width:250px;" />
+
+
+						<h:outputText value="Seleccione El Icono: *" />
+						<p:fileUpload value="#{contenidoManage.file_icon}" mode="simple"
+							sizeLimit="400000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							style="width:250px;" />
+
+						<h:outputText value="Seleccione Captura 1:" />
+						<p:fileUpload value="#{contenidoManage.screen_principal}"
+							sizeLimit="400000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							mode="simple" style="width:250px;" />
+
+						<h:outputText value="Seleccione Captura 2:" />
+						<p:fileUpload value="#{contenidoManage.screen_secundario}"
+							sizeLimit="400000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							mode="simple" style="width:250px;" />
+
+						<h:outputText value="Categoría: *" />
+						<p:selectOneMenu id="categories" style="width:250px;"
+							value="#{contenidoManage.id_categoria}">
+
+							<f:selectItems value="#{contenidoManage.categorias}" var="player"
+								itemLabel="#{player.nombre}" itemValue="#{player.id}" />
+
+							<p:ajax update="intercategorias" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Sub:" />
+						<p:selectOneMenu id="intercategorias" style="width:250px;"
+							value="#{contenidoManage.id_intercategoria}">
+
+							<f:selectItems value="#{contenidoManage.categoriasSub}"
+								var="player" itemLabel="#{player.nombre}"
+								itemValue="#{player.id}" />
+							<p:ajax update="subcategories" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Sub Categoria:" />
+						<p:selectOneMenu id="subcategories" style="width:250px;"
+							value="#{contenidoManage.id_subcategoria}">
+							<f:selectItems value="#{contenidoManage.categoriasNivel}"
+								var="player" itemLabel="#{player.nombre}"
+								itemValue="#{player.id}" />
+						</p:selectOneMenu>
+
+						
+					</h:panelGrid>
+					<p:commandButton value="Aceptar"
+						action="#{contenidoManage.adicionarContenido}" ajax="false" />
+				</h:form>
+			</center>
+		</p:panel>
+	</ui:define>
+</ui:composition>
