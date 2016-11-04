@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/xhtml; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<!-- <link rel="stylesheet" type="text/css" href="css/thema.css" /> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<title><ui:insert name="titulo">Index2</ui:insert></title>	 
+</h:head>
+<h:body>
+
+	<div class="principal">
+
+		<div class="banner" />
+
+
+		<div class="menuLine">
+			<div class="menu">
+				<p:menubar  rendered="#{seguridadBean.autenticado}">
+					<p:submenu label="Contenido">
+						<p:menuitem value="Adicionar Contenido"
+							url="./addContenido.jsf" />
+						<p:menuitem value="Contenido Disponible"
+							url="./listContenido.jsf" />
+					</p:submenu>
+
+					<p:submenu label="Historial">
+						<p:menuitem value="Top Descargas"
+							url="./listHDescargas.jsf" />
+						<p:menuitem value="Historial de Descargas"
+							url="./listDescargas.jsf" />
+						<p:menuitem value="Rating de Contenidos"
+							url="./listRating.jsf" />
+						<p:menuitem value="Reporte de Usuario"
+							url="./ReportUser.jsf" />
+						<p:menuitem value="Ingresos sin Descargas"
+							url="./ReportAccesNoDownload.jsf" />	
+					</p:submenu>
+
+					<p:submenu label="Noticias">
+						<p:menuitem value="Adicionar Noticia" url="./adicionarNoticia.jsf" />
+						<p:menuitem value="Noticias Disponible"	url="/listNoticia.jsf" />
+					</p:submenu>
+					
+					<p:submenu label="Categoria">
+						<p:menuitem value="Adicionar Categoria" url="./adicionarCategoria.jsf" />
+						<p:menuitem value="Adicionar Subcategoria"	url="/adicionarSubCategoria.jsf" />
+					
+					</p:submenu>
+
+
+				</p:menubar>
+			</div>
+		</div>
+		
+		
+
+		<div class="header_contenido" />
+		<div class="contenido">
+			<div class="publicaciones">
+
+				<ui:insert name="contenido">
+					<p:panel header="Pedro" styleClass="login" rendered="#{!seguridadBean.autenticado}">
+						<center>
+							<h:form id="logLogin">
+							<p:message for="logLogin" />
+								<h:panelGrid columns="2" border="0">
+									<h:outputLabel value="Nombre de Usuario: " />
+									<h:inputText value="#{seguridadBean.nUsuario}" />
+									<h:outputLabel value="Contrasena:"/>
+									<h:inputSecret value="#{seguridadBean.pass}" />
+								</h:panelGrid>
+								
+								<p:commandButton value="Aceptar" action="#{seguridadBean.login}"  ajax="false"
+									style="background: #330000; font-weight: bold; color: #ffffff; outline: none;">
+								</p:commandButton>
+								
+							</h:form>
+						</center>
+					</p:panel>
+					
+					<p:panel header="Login" styleClass="login" rendered="#{seguridadBean.autenticado}">
+						<center>
+							<h:form id="clogLogin">
+							<p:message for="clogLogin" />
+							
+							
+								<a>Actualmente se encuentra autenticado en el sistema, si desea cerrar sesión haga clik </a>	
+								<p:commandLink id="nonAjax" actionListener="#{seguridadBean.cerrar}" style="margin-right:20px;" ajax="false">  
+        						<h:outputText value="aqui." />  
+    							</p:commandLink>
+															
+							</h:form>
+						</center>
+					</p:panel>
+				</ui:insert>
+
+			</div>
+			<div class="footer_contenido" />
+		</div>
+		<div class="footer_contenido" />
+
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,73 @@
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Modificar Contenido
+	</ui:define>
+
+
+	<ui:define name="contenido">
+		<center>
+			<h:form id="formul" enctype="multipart/form-data">
+				<p:message id="mensaje" for="formul" />
+
+
+hola mundo triste
+
+					<!-- h:panelGrid id="display" columns="2" cellpadding="4"
+						style="margin:0 auto;">
+
+						<h:outputText value="ID:" style="display:none;" />
+						<h:inputText value="#{contenidoAltertManager.contenido.id}"
+							style="display:none;" />
+
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{contenidoAltertManager.contenido.nombre}" />
+
+						<h:outputText value="Versión:" />
+						<p:inputText value="#{contenidoAltertManager.contenido.version}" />
+
+						<h:outputText value="Descripción:" />
+						<p:inputTextarea rows="6" cols="25" autoResize="false"
+							value="#{contenidoAltertManager.contenido.descripcion}" />
+
+						<h:outputText value="Estado:" />
+						<p:selectBooleanCheckbox
+							value="#{contenidoAltertManager.contenido.estado}" />
+
+						<h:outputText value="Roles:" />
+						<h:panelGrid columns="2">
+							<h:outputText value="Caficultor" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.caficultor}" />
+							<h:outputText value="Empleado" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.empleado}" />
+							<h:outputText value="Investigador" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.investigador}" />
+							<h:outputText value="Otros" />
+							<p:selectBooleanCheckbox
+								value="#{contenidoAltertManager.contenido.otros}" />
+						</h:panelGrid>
+
+
+					</h:panelGrid>
+
+
+					<p:commandButton value="Aceptar"
+						action="#{contenidoAltertManager.update}"
+						onclick="itemDialog.hide()" update="dataTable" /-->
+
+			</h:form>
+		</center>
+
+
+	</ui:define>
+
+</ui:composition>
