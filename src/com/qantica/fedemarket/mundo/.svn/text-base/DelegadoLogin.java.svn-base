@@ -1,0 +1,39 @@
+package com.ethereal.fedecafe.mundo;
+
+
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import com.ethereal.fedecafe.ejb.LoginBean;
+import com.ethereal.fedecafe.ejb.LoginBeanLocal;
+import com.ethereal.fedecafe.ejb.LoginBeanRemote;
+import com.ethereal.fedecafe.entidad.Usuario;
+
+@ManagedBean
+@ViewScoped
+public class DelegadoLogin {
+
+	
+	@EJB(name="LoginBean/remote")
+	LoginBeanRemote ejb;
+	
+	public DelegadoLogin(){
+		
+		
+	}
+	
+	public Usuario verificarLogin(String usuario, String contrasena){
+		
+		System.out.println("antes--------------------------"+ejb);
+		
+		Usuario aux=ejb.validarUsuario(usuario, contrasena);
+		
+				System.out.println(aux+"--------------------------");
+			
+		return aux;
+	}
+	
+}

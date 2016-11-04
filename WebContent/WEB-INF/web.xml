@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
 	id="WebApp_ID" 
 	version="2.5">
-  <display-name>FedeMarket</display-name>
+  <display-name>TiendaQantica</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsf</welcome-file>
@@ -26,7 +26,8 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   <listener>
-    <listener-class>         
+    <listener-class>
+         <!--  com.ethereal.fedecafe.conf.InitVariables -->
          com.sun.faces.config.ConfigureListener
       </listener-class>
   </listener>
@@ -39,10 +40,176 @@
     <description></description>
     <display-name>ServletLogin</display-name>
     <servlet-name>ServletLogin</servlet-name>
-    <servlet-class>com.qantica.fedemarket.servlet.ServletLogin</servlet-class>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletLogin</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletLogin</servlet-name>
     <url-pattern>/ServletLogin</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ServletNoticias</display-name>
+    <servlet-name>ServletNoticias</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletNoticias</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletNoticias</servlet-name>
+    <url-pattern>/ServletNoticias</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletContenido</display-name>
+    <servlet-name>ServletContenido</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletContenido</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletContenido</servlet-name>
+    <url-pattern>/ServletContenido</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDescarga</display-name>
+    <servlet-name>ServletDescarga</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletDescarga</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDescarga</servlet-name>
+    <url-pattern>/ServletDescarga</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletCategoria</display-name>
+    <servlet-name>ServletCategoria</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletCategoria</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCategoria</servlet-name>
+    <url-pattern>/ServletCategoria</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletSubCategoria</display-name>
+    <servlet-name>ServletSubCategoria</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletSubCategoria</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletSubCategoria</servlet-name>
+    <url-pattern>/ServletSubCategoria</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDestacados</display-name>
+    <servlet-name>ServletDestacados</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletDestacados</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDestacados</servlet-name>
+    <url-pattern>/ServletDestacados</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletAcceso</display-name>
+    <servlet-name>ServletAcceso</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletAcceso</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletAcceso</servlet-name>
+    <url-pattern>/ServletAcceso</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletComentario</display-name>
+    <servlet-name>ServletComentario</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletComentario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletComentario</servlet-name>
+    <url-pattern>/ServletComentario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletActualizar</display-name>
+    <servlet-name>ServletActualizar</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletActualizar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletActualizar</servlet-name>
+    <url-pattern>/ServletActualizar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletActualizarCategoria</display-name>
+    <servlet-name>ServletActualizarCategoria</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletActualizarCategoria</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletActualizarCategoria</servlet-name>
+    <url-pattern>/ServletActualizarCategoria</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletListaComentario</display-name>
+    <servlet-name>ServletListaComentario</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletListaComentario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletListaComentario</servlet-name>
+    <url-pattern>/ServletListaComentario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletScreenCapture</display-name>
+    <servlet-name>ServletScreenCapture</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletScreenCapture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletScreenCapture</servlet-name>
+    <url-pattern>/ServletScreenCapture</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletIconCategoria</display-name>
+    <servlet-name>ServletIconCategoria</servlet-name>
+    <servlet-class>com.qantica.tiendaqantica.servlet.ServletIconCategoria</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletIconCategoria</servlet-name>
+    <url-pattern>/ServletIconCategoria</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+ <!-- <filter>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+	<filter-class>com.qantica.tiendaqantica.filter.FileUploadFilter</filter-class>
+     <init-param>
+      <param-name>thresholdSize</param-name>
+      <param-value>51200</param-value>
+    </init-param>  
+     <init-param>
+      <param-name>uploadDirectory</param-name>
+      <param-value>/</param-value>
+    </init-param>
+  </filter>  
+  <filter-mapping>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
+  
+   -->  
+  
+    
+  
+  
+  <filter>
+    <display-name>EncodingUTF</display-name>
+    <filter-name>EncodingUTF</filter-name>
+    <filter-class>com.qantica.tiendaqantica.filter.EncodingUTF</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingUTF</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
 </web-app>

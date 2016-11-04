@@ -1,0 +1,57 @@
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Contenido Disponible
+	</ui:define>
+
+
+	<ui:define name="contenido">
+
+
+
+		<center>
+
+
+			<h:form prependId="false" rendered="#{seguridadBean.autenticado}">
+
+				<p:dataTable id="dataTable" var="item" value="#{contenidoManage.destacados}"
+					paginator="true" rows="10" emptyMessage="No Existen Contenidos!"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
+            Top Descargas  
+        </f:facet>
+
+					<p:column filterBy="#{item.nombre}" headerText="Nombre" filterMatchMode="contains"> 
+						<h:outputText value="#{item.nombre}" />
+					</p:column>
+
+					<p:column filterBy="#{item.descargas}" headerText="Descargas" filterMatchMode="contains"> 
+						<h:outputText value="#{item.descargas}" />
+					</p:column>
+
+					<p:column filterBy="#{item.publicacion}" headerText="Publicación" filterMatchMode="contains" > 
+						<h:outputText value="#{item.publicacion}" />
+					</p:column>
+
+					<p:column filterBy="#{item.categoria.nombre}" headerText="Categoría" filterMatchMode="contains" >
+						<h:outputText value="#{item.categoria.nombre}" />
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+
+
+		</center>
+
+
+
+	</ui:define>
+
+</ui:composition>

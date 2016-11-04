@@ -1,0 +1,126 @@
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<!-- HEADER -->
+	<ui:define name="titulo">
+	    Contenido Disponible
+	</ui:define>
+
+	<ui:define name="contenido">
+		<center>
+			<h:form id="form" enctype="multipart/form-data">
+				<p:message id="mensaje" for="form" />
+				<p:dataTable id="dataTable" var="item"
+					value="#{contenidoAltertManager.lista}" paginator="true" rows="10"
+					emptyMessage="No Existen Contenidos!"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">					
+					
+					<f:facet name="header">  
+           				 Contenido Disponible  
+      			    </f:facet>
+      			    
+      			    <!-- FILTROS DE LAS CABECERAS -->
+      			    <!-- Filtro para el nombre -->
+					<p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"
+						headerText="Nombre" filterMatchMode="contains">
+						<h:outputText value="#{item.nombre}" />
+					</p:column>
+					
+					<!-- Filtro para la versión -->
+					<p:column filterBy="#{item.version}" sortBy="#{item.version}"
+						headerText="Versión" filterMatchMode="contains">
+						<h:outputText value="#{item.version}" />
+					</p:column>
+					
+					<!-- Filtro para la publicación -->
+					<p:column filterBy="#{item.publicacion}"
+						sortBy="#{item.publicacion}" headerText="Publicación"
+						filterMatchMode="contains">
+						<h:outputText value="#{item.publicacion}" />
+					</p:column>
+			
+					<!-- Filtro para la categoría -->
+					<p:column filterBy="#{item.categoria.nombre}"
+						sortBy="#{item.categoria.nombre}" headerText="Categoría"
+						filterMatchMode="contains">
+						<h:outputText value="#{item.categoria.nombre}" />
+					</p:column>
+
+					<p:column style="width:10px">
+						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+							<p:commandButton id="selectButtonUpdate" update=":actua:datos"
+								oncomplete="itemDialogImg.show()" icon="ui-icon-search"
+								ajax="true">
+
+								<f:setPropertyActionListener value="#{item}"
+									target="#{contenidoAltertManager.contenido}" />
+
+							</p:commandButton>
+						</h:panelGrid>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+			<div class="contenido" />
+
+			<h:form id="actua" enctype="multipart/form-data">
+
+				<p:dialog header="Detalle Contenido" widgetVar="itemDialogImg"
+					resizable="false" id="itemDlgImg" showEffect="fade"
+					hideEffect="explode" modal="true" width="600">
+
+					<h:panelGrid id="datos" columns="2" cellpadding="4"
+						style="margin:0 auto;">
+
+						<h:outputText value="ID:" style="display:none;" />
+						<h:inputText value="#{contenidoAltertManager.contenido.id}"
+							style="display:none;" />
+
+						<h:outputText value="Nombre:" />
+						<p:inputText value="#{contenidoAltertManager.contenido.nombre}" />
+
+						<h:outputText value="Versión:" />
+						<p:inputText value="#{contenidoAltertManager.contenido.version}" />
+
+						<h:outputText value="Descripción:" />
+						<p:inputTextarea rows="6" cols="25" autoResize="false"
+							value="#{contenidoAltertManager.contenido.descripcion}" />
+
+						<h:outputText value="Estado:" />
+						<p:selectBooleanCheckbox
+							value="#{contenidoAltertManager.contenido.estado}" />						
+
+						<h:outputText value="Contenido: *" />
+						<p:fileUpload value="#{contenidoAltertManager.archivo}"
+							mode="simple" sizeLimit="400000"
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width:150px;" />
+
+						<h:outputText value="Icono: *" />
+						<p:fileUpload value="#{contenidoAltertManager.file}" mode="simple"
+							sizeLimit="400000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							style="width:150px;" />
+							
+						<h:outputText value="Captura 1: *" />
+						<p:fileUpload value="#{contenidoAltertManager.screen_principal}"
+							sizeLimit="400000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							mode="simple" style="width:150px;" />
+							
+						<h:outputText value="Captura 2: *" />						
+						<p:fileUpload value="#{contenidoAltertManager.screen_secundario}"
+							sizeLimit="400000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							mode="simple" style="width:150px;" />
+					</h:panelGrid>
+					<p:commandButton value="Aceptar"
+						action="#{contenidoAltertManager.update}"
+						onclick="itemDialogImg.hide()" update="dataTable" ajax="false" />
+				</p:dialog>
+			</h:form>
+		</center>
+	</ui:define>
+</ui:composition>

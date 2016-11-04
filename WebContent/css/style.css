@@ -1,0 +1,90 @@
+body {
+	background: url(../image/backgroud_.jpg);
+	background-attachment: fixed;
+}
+
+div.principal {
+	position: absolute;
+	width: 800px;
+	margin-top: 5%;
+	margin-left: 50%;
+	left: -400px;
+}
+
+div.banner {
+	position: relative;
+	background: url(../image/banner.png);
+	width: 750px;
+	height: 132px;
+	margin-left: 50%;
+	left: -375px;
+}
+
+div.menu {
+	position: relative;
+	width: 750px;
+	margin-left: 50%;
+	left: -350px;
+}
+
+div.menuLine {
+	position: relative;
+	width: 750px;
+	margin-top: 10px;
+	/*margin-left: 50%;*/
+	/*left: -375px;*/
+}
+
+div.contenido {
+	position: relative;
+	width: 750px;
+	background: url(../image/contenido.png);
+	margin-left: 50%;
+	left: -375px;
+}
+
+div.publicaciones {
+	position: relative;
+	width: 670px;
+	left: 50%;
+	margin-left: -335px;
+}
+
+div.header_contenido {
+	position: relative;
+	width: 750px;
+	height: 50px;
+	background: url(../image/header_contenido.png);
+	margin-top: 10px;
+	margin-left: 50%;
+	left: -375px;
+	margin-left: 50%;
+}
+
+div.footer_contenido {
+	position: relative;
+	width: 750px;
+	height: 50px;
+	background: url(../image/footer_contenido.png);
+	margin-left: 50%;
+	left: -375px;
+}
+
+div.login {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	height: 200px;
+	width: 400px;
+}
+
+.formulario{
+	width: 170px;
+}
+
+/*
+.wijmo-wijmenu .wijmo-wijmenu-parent .wijmo-wijmenu-child {
+	background: #330000;
+	width: 150px;
+}*/
