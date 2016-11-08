@@ -14,9 +14,6 @@ import com.qantica.fedemarket.entidad.Usuario;
 /**
  * BackBean encargado de gestionar la seguridad de la aplicacion BackBean de
  * sesion para permitir el almacenamiento de la informacion realacionada
- * 
- * @author Diego Mauricio Herrera Alzate
- * 
  */
 
 @ManagedBean

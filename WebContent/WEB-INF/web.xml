@@ -40,7 +40,7 @@
     <description></description>
     <display-name>ServletLogin</display-name>
     <servlet-name>ServletLogin</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletLogin</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletLogin</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletLogin</servlet-name>
@@ -51,7 +51,7 @@
     <description></description>
     <display-name>ServletNoticias</display-name>
     <servlet-name>ServletNoticias</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletNoticias</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletNoticias</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletNoticias</servlet-name>
@@ -61,7 +61,7 @@
     <description></description>
     <display-name>ServletContenido</display-name>
     <servlet-name>ServletContenido</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletContenido</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletContenido</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletContenido</servlet-name>
@@ -71,7 +71,7 @@
     <description></description>
     <display-name>ServletDescarga</display-name>
     <servlet-name>ServletDescarga</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletDescarga</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletDescarga</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletDescarga</servlet-name>
@@ -81,7 +81,7 @@
     <description></description>
     <display-name>ServletCategoria</display-name>
     <servlet-name>ServletCategoria</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletCategoria</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletCategoria</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletCategoria</servlet-name>
@@ -91,7 +91,7 @@
     <description></description>
     <display-name>ServletSubCategoria</display-name>
     <servlet-name>ServletSubCategoria</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletSubCategoria</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletSubCategoria</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletSubCategoria</servlet-name>
@@ -101,7 +101,7 @@
     <description></description>
     <display-name>ServletDestacados</display-name>
     <servlet-name>ServletDestacados</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletDestacados</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletDestacados</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletDestacados</servlet-name>
@@ -111,7 +111,7 @@
     <description></description>
     <display-name>ServletAcceso</display-name>
     <servlet-name>ServletAcceso</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletAcceso</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletAcceso</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletAcceso</servlet-name>
@@ -121,7 +121,7 @@
     <description></description>
     <display-name>ServletComentario</display-name>
     <servlet-name>ServletComentario</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletComentario</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletComentario</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletComentario</servlet-name>
@@ -131,7 +131,7 @@
     <description></description>
     <display-name>ServletActualizar</display-name>
     <servlet-name>ServletActualizar</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletActualizar</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletActualizar</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletActualizar</servlet-name>
@@ -141,7 +141,7 @@
     <description></description>
     <display-name>ServletActualizarCategoria</display-name>
     <servlet-name>ServletActualizarCategoria</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletActualizarCategoria</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletActualizarCategoria</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletActualizarCategoria</servlet-name>
@@ -151,7 +151,7 @@
     <description></description>
     <display-name>ServletListaComentario</display-name>
     <servlet-name>ServletListaComentario</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletListaComentario</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletListaComentario</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletListaComentario</servlet-name>
@@ -161,7 +161,7 @@
     <description></description>
     <display-name>ServletScreenCapture</display-name>
     <servlet-name>ServletScreenCapture</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletScreenCapture</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletScreenCapture</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletScreenCapture</servlet-name>
@@ -171,7 +171,7 @@
     <description></description>
     <display-name>ServletIconCategoria</display-name>
     <servlet-name>ServletIconCategoria</servlet-name>
-    <servlet-class>com.qantica.tiendaqantica.servlet.ServletIconCategoria</servlet-class>
+    <servlet-class>com.qantica.fedemarket.servlet.ServletIconCategoria</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletIconCategoria</servlet-name>
@@ -205,7 +205,7 @@
   <filter>
     <display-name>EncodingUTF</display-name>
     <filter-name>EncodingUTF</filter-name>
-    <filter-class>com.qantica.tiendaqantica.filter.EncodingUTF</filter-class>
+    <filter-class></filter-class>
   </filter>
   <filter-mapping>
     <filter-name>EncodingUTF</filter-name>
