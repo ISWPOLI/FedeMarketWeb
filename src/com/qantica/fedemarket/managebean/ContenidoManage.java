@@ -40,11 +40,11 @@ import com.sun.syndication.feed.rss.Description;
 public class ContenidoManage {
 
 	@EJB(name = "ContenidoBean/remote")
-	ContenidoBeanRemote miEJB;
-	
+	ContenidoBeanRemote miEJBContenido;
+
 	@EJB(name = "CategoriaBean/remote")
 	CategoriaBeanRemote miEJBcategoria;
-	
+
 	private Contenido contenido = new Contenido();
 	private Categoria categoria;
 	private Subcategoria subCategoria;	
@@ -73,27 +73,20 @@ public class ContenidoManage {
 	 * Adición del contenido
 	 */
 	public void adicionarContenido() {
-
 		try {
-
 			contenido.setNombre(new String(contenido.getNombre().getBytes("ISO-8859-1"), "UTF-8"));
 			contenido.setDescripcion(new String(contenido.getDescripcion().getBytes("ISO-8859-1"), "UTF-8"));
-
 		} catch (UnsupportedEncodingException e1) {
-
 			e1.printStackTrace();
 		}
 
 		/*if (contenido.getNombre().length() != 0
 				&& contenido.getVersion().length() != 0
 				&& contenido.getDescripcion().length() != 0) {
-
 			if (!contenido.isCaficultor() && !contenido.isEmpleado()
 					&& !contenido.isInvestigador() && !contenido.isOtros()) {
-
 				FacesContext.getCurrentInstance().addMessage(
 						"formul",
-
 						new FacesMessage(FacesMessage.SEVERITY_ERROR,
 								"Verifique La Información Suministrada!",
 								"Aun No Se Encuentra Ningun Rol Seleccionado"));
@@ -379,18 +372,14 @@ public class ContenidoManage {
 	}
 
 	/**
-	 * METODO PARA LA CARGA DE EL ICONO AL SERVIDOR
-	 * 
+	 * Método para la carga del ícono al servidor 
 	 * @param fileName
 	 * @param in
 	 * @return
 	 */
 	public boolean copyFileIcon(String fileName, InputStream in) {
-
 		try {
-
 			File mFile = new File(Conf.RUTA_ICO_CONTENIDO + fileName);
-			// write the inputStream to a FileOutputStream
 			OutputStream out = new FileOutputStream(mFile);
 
 			int read = 0;
@@ -416,7 +405,6 @@ public class ContenidoManage {
 
 	/**
 	 * Metodo encargado de listar las categorias de primer nivel
-	 * 
 	 * @return
 	 */
 	public List<Categoria> getCategorias() {
@@ -432,14 +420,14 @@ public class ContenidoManage {
 	}*/
 
 	public List<Contenido> getDestacados() {
-		List<Contenido> lista = miEJB.listarDestacados(true);
+		List<Contenido> lista = miEJBContenido.listarDestacados(true);
 		return lista;
 	}
 
 	public void buscar() {
-		miEJB.buscarContenido(id);
+		miEJBContenido.buscarContenido(id);
 	}
-	
+
 	/** GETTERS AND SETTERS **/
 
 	public Contenido getContenido() {

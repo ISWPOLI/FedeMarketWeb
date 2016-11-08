@@ -3,6 +3,7 @@ package com.qantica.fedemarket.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -24,6 +25,8 @@ public class ServletAcceso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	Context context;
+	
+	@EJB(name="UsuarioBean/remote")
 	UsuarioBeanRemote miEJB;
 
 	public void init() {
