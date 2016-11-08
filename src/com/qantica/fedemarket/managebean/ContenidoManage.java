@@ -372,18 +372,14 @@ public class ContenidoManage {
 	}
 
 	/**
-	 * METODO PARA LA CARGA DE EL ICONO AL SERVIDOR
-	 * 
+	 * Método para la carga del ícono al servidor 
 	 * @param fileName
 	 * @param in
 	 * @return
 	 */
 	public boolean copyFileIcon(String fileName, InputStream in) {
-
 		try {
-
 			File mFile = new File(Conf.RUTA_ICO_CONTENIDO + fileName);
-			// write the inputStream to a FileOutputStream
 			OutputStream out = new FileOutputStream(mFile);
 
 			int read = 0;
@@ -409,7 +405,6 @@ public class ContenidoManage {
 
 	/**
 	 * Metodo encargado de listar las categorias de primer nivel
-	 * 
 	 * @return
 	 */
 	public List<Categoria> getCategorias() {

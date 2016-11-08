@@ -61,7 +61,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.0.jar"/>
 	<classpathentry kind="lib" path="build/javax.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jrubiaob/Documents/DOCUMENTOS TEMPORALES/Documentos/FEDECAFE/LibreriasFedecafeWAR/jndi-1.2.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/iText.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web;jst.jsf"/>
