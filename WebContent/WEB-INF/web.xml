@@ -205,7 +205,7 @@
   <filter>
     <display-name>EncodingUTF</display-name>
     <filter-name>EncodingUTF</filter-name>
-    <filter-class></filter-class>
+    <filter-class>com.qantica.fedemarket.filter.EncodingUTF</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>EncodingUTF</filter-name>
