@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+
 import com.qantica.fedemarket.ejb.IngresoBeanRemote;
 import com.qantica.fedemarket.entidad.Ingreso;
 
