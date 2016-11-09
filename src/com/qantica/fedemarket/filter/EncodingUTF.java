@@ -23,20 +23,14 @@ public class EncodingUTF implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		try{
-			if (request.getCharacterEncoding() == null) {
-
-				if (request.getContentType()!=null && request.getContentType().contains("multipart/form-data")) {
-					request.setCharacterEncoding("ISO-8859-1");
-				} else {
-					request.setCharacterEncoding("UTF-8");
-				}
+		if (request.getCharacterEncoding() == null) {
+			if (request.getContentType()!=null && request.getContentType().contains("multipart/form-data")) {
+				request.setCharacterEncoding("ISO-8859-1");
+			}else{
+				request.setCharacterEncoding("UTF-8");
 			}
-			chain.doFilter(request, response);
-		}catch(Exception e){
-			e.printStackTrace();
 		}
-
+		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

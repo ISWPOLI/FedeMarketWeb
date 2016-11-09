@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
 
 import org.primefaces.model.UploadedFile;
 
@@ -22,6 +24,7 @@ import com.qantica.fedemarket.conf.Conf;
 import com.qantica.fedemarket.ejb.CategoriaBeanRemote;
 import com.qantica.fedemarket.ejb.ContenidoBeanRemote;
 import com.qantica.fedemarket.ejb.RolBeanRemote;
+import com.qantica.fedemarket.ejb.SubcategoriaBeanRemote;
 import com.qantica.fedemarket.entidad.Categoria;
 import com.qantica.fedemarket.entidad.Contenido;
 import com.qantica.fedemarket.entidad.Rol;
@@ -43,7 +46,7 @@ public class ContenidoManage {
 	ContenidoBeanRemote miEJBContenido;
 
 	@EJB(name = "CategoriaBean/remote")
-	CategoriaBeanRemote miEJBcategoria;
+	CategoriaBeanRemote miEJBCategoria;
 
 	private Contenido contenido = new Contenido();
 	private Categoria categoria;
@@ -408,11 +411,18 @@ public class ContenidoManage {
 	 * @return
 	 */
 	public List<Categoria> getCategorias() {
-		return miEJBcategoria.listarCategoriasServlet();
+		return miEJBCategoria.listarCategoriasServlet();
 	}
 
 	public List<Subcategoria> getCategoriasSub() {
-		return miEJBcategoria.listarSubcategorias(id_categoria);
+		List<Subcategoria> temp = new ArrayList<Subcategoria>();
+		try {
+			temp = miEJBCategoria.listarSubcategorias(id_categoria);
+		} catch (Exception e) {
+			System.out.println("Entro un null en getCategoriasSub");
+			temp = miEJBCategoria.listarSubcategorias(0);
+		}
+		return temp;
 	}
 
 	/*public List<Subcategoria> getCategoriasNivel() {
