@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -23,52 +24,48 @@ import com.qantica.fedemarket.entidad.Contenido;
 import com.qantica.fedemarket.entidad.Descarga;
 
 /**
- * Servlet implementation class ServletDescarga
+ * Servlet para descargar un archivo, insertar log de descarga
+ * @author Juan Rubiano
+ * 09/11/2016
  */
 public class ServletDescarga extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
 	Context context;
+	
+	@EJB(name="DescargaBean/remote")
 	DescargaBeanRemote miEJB;
+	
+	@EJB(name="ContenidoBean/remote")
 	ContenidoBeanRemote miEJBContenido;
+	
+	@EJB(name="ComentarioBean/remote")
 	ComentarioBeanRemote miEJBComentario;
 
 	public void init() {
 		try {
-
 			context = new InitialContext();
 			miEJB = (DescargaBeanRemote) context.lookup("DescargaBean/remote");
-			miEJBContenido = (ContenidoBeanRemote) context
-					.lookup("ContenidoBean/remote");
-			miEJBComentario = (ComentarioBeanRemote) context
-					.lookup("ComentarioBean/remote");
-
+			miEJBContenido = (ContenidoBeanRemote) context.lookup("ContenidoBean/remote");
+			miEJBComentario = (ComentarioBeanRemote) context.lookup("ComentarioBean/remote");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public ServletDescarga() {
 		super();
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * HTTP GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
-		// parametros de llegada
 		String contenido = request.getParameter("id_contenido");
 		String usuario = request.getParameter("id_usuario");
-		String nombre = request.getParameter("nombre_usuario");
 
 		//configuracion de la fecha actual con hora
 		java.util.Date utilDate = new java.util.Date(); // fecha actual
@@ -76,34 +73,36 @@ public class ServletDescarga extends HttpServlet {
 		java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(lnMilisegundos);
 		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
 		String cadenaFecha = formato.format(sqlTimestamp);
-		
-		
-		// instacia de la entidad descarga
-		Descarga miDescarga = new Descarga();
-		
+				
+		//Busca el contenido que se está descargando
 		Contenido miContenido = miEJBContenido.buscarContenido(Integer.parseInt(contenido));
+		
+		//Aumento en 1 el contador de las descargas
 		miContenido.setDescargas(miContenido.getDescargas()+1);
 		
+		//Actualizo el contenido
 		miEJBContenido.updateContenido(miContenido);
 		
+		//Creo un objeto Descarga para insertar en el log
+		Descarga miDescarga = new Descarga();
 		miDescarga.setId(0);
-		miDescarga.setContenido(miContenido);
+		miDescarga.setContenido(miContenido.getId());
 		miDescarga.setUsuario(usuario);
-		miDescarga.setNombre(nombre);
 		miDescarga.setFecha(cadenaFecha);
 		
-		// descarga del archivo
 		response.setContentType("text/html;charset=UTF-8");
-		// PrintWriter out = response.getWriter();
+		
 		try {
-			//String archivo = "C:/Users/USUARIO WINDOWS/Desktop/hola.jpg";
+			//String archivo = "C:/Users/jrubiaob/Documents";
 			String archivo = Conf.RUTA_CONTENIDO+miContenido.getRuta();
 			
-//			System.out.println(new File(".").getAbsolutePath());
-			
 			File f = new File(archivo);
-			response.setContentType("image/jpg");// Se define el tipo de archivo
-													// a descargar
+			
+			// Se define el tipo de archivo a descargar
+			response.setContentType("image/jpg");
+			
+			miEJB.adicionarDescarga(miDescarga);
+			
 			response.setContentLength((int) f.length());
 			response.setHeader("Content-Disposition", "attachment; filename=\""
 					+ archivo + "\"");
@@ -122,6 +121,7 @@ public class ServletDescarga extends HttpServlet {
 			outs.flush();
 			outs.close();
 			in.close();
+			
 			miEJB.adicionarDescarga(miDescarga);
 			
 		} finally {
