@@ -416,10 +416,9 @@ public class ContenidoManage {
 
 	public List<Subcategoria> getCategoriasSub() {
 		List<Subcategoria> temp = new ArrayList<Subcategoria>();
-		try {
+		try {			
 			temp = miEJBCategoria.listarSubcategorias(id_categoria);
 		} catch (Exception e) {
-			System.out.println("Entro un null en getCategoriasSub");
 			temp = miEJBCategoria.listarSubcategorias(0);
 		}
 		return temp;
