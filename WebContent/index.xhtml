@@ -10,50 +10,59 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<title><ui:insert name="titulo">Index</ui:insert></title>
 	</h:head>
-	<h:body>	
-		<div class="principal">	
-			<div class="banner" />	
+	
+	<h:body>
+		<div class="principal">
+			<div class="banner" />
 			<div class="menuLine">
 				<div class="menu">
 					<h:form>
 						<p:menubar rendered="#{seguridadBean.autenticado}">
 							<p:submenu label="Registros">
-								<p:menuitem value="Usuario" url="./addUsuario.jsf"/>
-								<p:menuitem value="Rol" url=".addRol.jsf"/>
+								<p:menuitem value="Usuario" url="./addUsuario.jsf" />
+								<p:menuitem value="Rol" url="./addRol.jsf" />
 							</p:submenu>
-						
+	
 							<p:submenu label="Contenido">
 								<p:menuitem value="Adicionar Contenido" url="./addContenido.jsf" />
-								<p:menuitem value="Contenido Disponible" url="./listContenido.jsf" />
+								<p:menuitem value="Contenido Disponible"
+									url="./listContenido.jsf" />
 							</p:submenu>
-		
+	
 							<p:submenu label="Historial">
 								<p:menuitem value="Top Descargas" url="./listHDescargas.jsf" />
-								<p:menuitem value="Historial de Descargas" url="./listDescargas.jsf" />
+								<p:menuitem value="Historial de Descargas"
+									url="./listDescargas.jsf" />
 								<p:menuitem value="Rating de Contenidos" url="./listRating.jsf" />
 								<p:menuitem value="Reporte de Usuario" url="./ReportUser.jsf" />
-								<p:menuitem value="Ingresos sin Descargas" url="./ReportAccesNoDownload.jsf" />
+								<p:menuitem value="Ingresos sin Descargas"
+									url="./ReportAccesNoDownload.jsf" />
 							</p:submenu>
-		
+	
 							<p:submenu label="Noticias">
-								<p:menuitem value="Adicionar Noticia" url="./adicionarNoticia.jsf" />
+								<p:menuitem value="Adicionar Noticia"
+									url="./adicionarNoticia.jsf" />
 								<p:menuitem value="Noticias Disponible" url="/listNoticia.jsf" />
 							</p:submenu>
-		
+	
 							<p:submenu label="Categoria">
-								<p:menuitem value="Adicionar Categoria"	url="./adicionarCategoria.jsf" />
-								<p:menuitem value="Adicionar Subcategoria" url="/adicionarSubCategoria.jsf" />
-								<p:menuitem value="Categoria Disponible" url="./listCategoria.jsf" />
-								<p:menuitem value="SubCategoria Disponible"	url="./listSubCategoria.jsf" />
+								<p:menuitem value="Adicionar Categoria"
+									url="./adicionarCategoria.jsf" />
+								<p:menuitem value="Adicionar Subcategoria"
+									url="/adicionarSubCategoria.jsf" />
+								<p:menuitem value="Categoria Disponible"
+									url="./listCategoria.jsf" />
+								<p:menuitem value="SubCategoria Disponible"
+									url="./listSubCategoria.jsf" />
 							</p:submenu>
 						</p:menubar>
-					</h:form>					
+					</h:form>
 				</div>
 			</div>
-				
+	
 			<div class="header_contenido" />
 			<div class="contenido">
-				<div class="publicaciones">	
+				<div class="publicaciones">
 					<ui:insert name="contenido">
 						<p:panel header="Login" styleClass="login"
 							rendered="#{!seguridadBean.autenticado}">
@@ -80,11 +89,11 @@
 							rendered="#{seguridadBean.autenticado}">
 							<center>
 								<h:form id="clogLogin">
-									<p:message for="clogLogin" />
-	
+									<p:message for="clogLogin" />	
 	
 									<a>Actualmente se encuentra autenticado en el sistema, si
 										desea cerrar sesión haga click </a>
+										
 									<p:commandLink id="nonAjax"
 										actionListener="#{seguridadBean.cerrar}"
 										style="margin-right:20px;" ajax="false">
@@ -94,10 +103,10 @@
 								</h:form>
 							</center>
 						</p:panel>
-					</ui:insert>	
+					</ui:insert>
 				</div>
 				<div class="footer_contenido" />
-			</div>	
+			</div>
 		</div>
 	</h:body>
 </html>
