@@ -47,6 +47,10 @@ public class ContenidoManage {
 
 	@EJB(name = "CategoriaBean/remote")
 	CategoriaBeanRemote miEJBCategoria;
+	
+	@EJB(name = "RolBean/remote")
+	RolBeanRemote miEJBRol;
+	
 
 	private Contenido contenido = new Contenido();
 	private Categoria categoria;

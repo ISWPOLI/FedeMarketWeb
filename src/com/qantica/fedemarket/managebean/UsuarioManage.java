@@ -49,11 +49,17 @@ public class UsuarioManage {
 			miEJB.adicionarUsuario(usuario);
 			
 			limpiar();
-		}else{
+			
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
 							"Verifique La Información Suministrada!",
 							"Usuario Adicionado"));
+			
+		}else{
+			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
+							"Verifique La Información Suministrada!",
+							"Alguno de los campos se encuentra sin diligenciar"));
 		}
 	}
 	
