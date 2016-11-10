@@ -12,19 +12,17 @@
 
 	<ui:define name="contenido">
 		<center>
-			<h:form id="dataUser">
-
+			<!-- <h:form id="dataUser">
 				<h:panelGrid columns="2" border="0">
-
-					<h:outputText value="Identificador: * "/>
+					<h:outputText value="Identificador: * " />
 					<p:inputText id="nombre_contenido" value="#{reportUserBean.user}"
 						style="width:250px;" maxlength="10" />
-
 				</h:panelGrid>
 
 				<p:commandButton value="Aceptar"
-					update="dataTableIngreso , dataTableComentario, dataTableDescarga"  ajax="true" />
-			</h:form>
+					update="dataTableIngreso , dataTableComentario, dataTableDescarga"
+					ajax="true" />
+			</h:form> -->
 
 			<h:form id="form" prependId="false"
 				rendered="#{seguridadBean.autenticado}">
@@ -36,11 +34,12 @@
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
 					<f:facet name="header">  
-            Reporte de Ingresos  
-        </f:facet>
+						 Reporte de Ingresos
+        			</f:facet>
+
 					<p:column filterBy="#{item.usuario}" sortBy="#{item.usuario}"
-						headerText="Usuario">
-						<h:outputText value="#{item.usuario}" />
+						headerText="Nombre | Usuario">
+						<h:outputText value="#{item.usuario.nombre} #{item.usuario.apellido} | #{item.usuario.usuario}" />
 					</p:column>
 
 					<p:column filterBy="#{item.fecha}" sortBy="#{item.fecha}"
@@ -50,65 +49,8 @@
 
 
 				</p:dataTable>
-				<br />
-				<!-- TABLA DE LOS COMENTARIOS REALACIONADOS  -->
-
-
-				<p:dataTable id="dataTableComentario" var="item"
-					value="#{reportUserBean.lista_Comentarios}" paginator="true"
-					rows="10" emptyMessage="No Existen Contenidos!"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15">
-					<f:facet name="header">  
-            Reporte de Comentarios  
-        </f:facet>
-					<p:column headerText="Nombre">
-						<h:outputText value="#{item.nombre}" />
-					</p:column>
-
-					<p:column headerText="Rating">
-						<h:outputText value="#{item.rating}" />
-					</p:column>
-
-					<p:column headerText="Comentario">
-						<h:outputText value="#{item.descripcion}" />
-					</p:column>
-
-					<p:column headerText="Fecha">
-						<h:outputText value="#{item.fecha}" />
-					</p:column>
-
-					<p:column headerText="Contenido">
-						<h:outputText value="#{item.contenido.nombre}" />
-					</p:column>
-
-				</p:dataTable>
-				<br />
-
-				<p:dataTable id="dataTableDescarga" var="item"
-					value="#{reportUserBean.lista_Descargas}" paginator="true"
-					rows="10" emptyMessage="No Existen Contenidos!"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15">
-					<f:facet name="header">  
-            	Reporte de Descargas  
-        		</f:facet>
-					<p:column headerText="Usuario">
-						<h:outputText value="#{item.usuario}" />
-					</p:column>
-
-					<p:column headerText="Fecha">
-						<h:outputText value="#{item.fecha}" />
-					</p:column>
-
-					<p:column headerText="Contenido">
-						<h:outputText value="#{item.contenido.nombre}" />
-					</p:column>
-
-				</p:dataTable>
-
+				<br />				
 			</h:form>
 		</center>
 	</ui:define>
-
 </ui:composition>

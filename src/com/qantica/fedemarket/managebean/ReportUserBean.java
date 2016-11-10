@@ -29,22 +29,18 @@ public class ReportUserBean {
 	@EJB(name = "IngresoBean/remote")
 	IngresoBeanRemote miEjb;
 	
-
 	public String user="";
 	
-	public List<Comentario> getLista_Comentarios() {
-		
+	public List<Comentario> getLista_Comentarios() {		
 		return miEjbComentario.listarComentariosUsuario(user);
 	}
 
-	public List<Descarga> getListaDescargas() {
-		
-		return miEjbDescarga.listDescargaUsuario(user);
+	public List<Descarga> getListaDescargas() {		
+		return miEjbDescarga.listDescargaUsuario(String.valueOf(user));
 	}
 
-	public List<Ingreso> getLista_Ingresos() {
-		
-		return miEjb.listarIngresos(user);
+	public List<Ingreso> getLista_Ingresos() {		
+		return miEjb.listarIngresos(String.valueOf(user));
 	}
 
 	public String getUser() {
