@@ -37,7 +37,7 @@ public class ReportUserBean {
 		return miEjbComentario.listarComentariosUsuario(user);
 	}
 
-	public List<Descarga> getLista_Descargas() {
+	public List<Descarga> getListaDescargas() {
 		
 		return miEjbDescarga.listDescargaUsuario(user);
 	}

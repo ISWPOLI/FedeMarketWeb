@@ -17,10 +17,6 @@ public class DescargaManage {
 	Descarga descarga;
 	int id;
 
-	/**
-	 * METODOS ADICION, BUSQUEDA Y ACTUALIZACION
-	 */
-	
 	public void adicionarDescarga(){
 		miEJB.adicionarDescarga(descarga);
 		descarga=new Descarga();
@@ -42,10 +38,7 @@ public class DescargaManage {
 		return miEJB.historialDescarga();
 	}
 	
-	/**
-	 * METODOS ACCESORES Y MODIFICADORES
-	 * @return
-	 */
+	
 	public Descarga getDescarga() {
 		return descarga;
 	}
