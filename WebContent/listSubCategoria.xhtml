@@ -19,13 +19,13 @@
 
 
 				<p:dataTable id="dataTable" var="item"
-					value="#{subCategoriaAltertManager.lista}" paginator="true" rows="10"
-					emptyMessage="No Existen Contenidos!"
+					value="#{subCategoriaAltertManager.lista}" paginator="true"
+					rows="10" emptyMessage="No Existen Contenidos!"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
 					<f:facet name="header">  
-            SubCategorias Disponibles
-        </f:facet>
+            			SubCategorias Disponibles
+        			</f:facet>
 
 					<p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"
 						headerText="Nombre" filterMatchMode="contains">
@@ -61,12 +61,12 @@
 							style="display:none;" />
 
 						<h:outputText value="Nombre:" />
-						<p:inputText value="#{subCategoriaAltertManager.subcategoria.nombre}" />
-						
-						<h:outputText value="Estado:" />	
-							<p:selectBooleanCheckbox
-								value="#{subCategoriaAltertManager.subcategoria.estado}" />
+						<p:inputText
+							value="#{subCategoriaAltertManager.subcategoria.nombre}" />
 
+						<h:outputText value="Estado:" />
+						<p:selectBooleanCheckbox
+							value="#{subCategoriaAltertManager.subcategoria.estado}" />
 
 					</h:panelGrid>
 
