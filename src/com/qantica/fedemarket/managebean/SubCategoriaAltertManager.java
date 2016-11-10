@@ -1,26 +1,14 @@
 package com.qantica.fedemarket.managebean;
 
-import java.io.File;
 
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import org.primefaces.model.UploadedFile;
 
-import com.qantica.fedemarket.mundo.FechaActual;
-import com.qantica.fedemarket.ejb.CategoriaBeanRemote;
-import com.qantica.fedemarket.ejb.ContenidoBeanRemote;
 import com.qantica.fedemarket.ejb.SubcategoriaBeanRemote;
-import com.qantica.fedemarket.entidad.Categoria;
-import com.qantica.fedemarket.entidad.Contenido;
 import com.qantica.fedemarket.entidad.Subcategoria;
 
 @ManagedBean
