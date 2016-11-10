@@ -18,11 +18,14 @@
 					<h:panelGrid columns="2" border="0">
 
 						<h:outputText value="Nombre del Rol: *" />
-						<p:inputText value="#{noticiaManage.titulo}" id="titulo" maxlength="50" />
+						<p:inputText value="#{rolManage.nombre}" id="nombre" maxlength="50" />
 
 						<h:outputText value="Estado:" />
-						<p:selectBooleanCheckbox />
+						<p:selectBooleanCheckbox value="#{rolManage.estado}"/>
 					</h:panelGrid>
+					
+					<p:commandButton value="Aceptar"
+						action="#{rolManage.adicionarRol}" ajax="false" />
 				</h:form>
 			</center>
 		</p:panel>
