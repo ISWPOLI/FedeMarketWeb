@@ -30,7 +30,7 @@
 						<h:outputText value="Descripción: *" />
 						<p:inputTextarea rows="6" cols="33" value="#{categoriaManage.categoria.descripcion}"/>
 						
-						<h:outputText value="Roles: *" />
+						<h:outputText value="Rol: *" />
 						<h:selectOneMenu value="#{categoriaManage.categoria.rol}">
 							<f:selectItems value="#{categoriaManage.roles}" var="rol"
 								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
