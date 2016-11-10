@@ -26,13 +26,9 @@ public class NoticiaManage {
 	String descripcion;
 	String fuente;
 
-	public List<Noticia> getNoticias(int rol) {
-		return miEJB.listarNoticias(rol);
+	public List<Noticia> getNoticias() {
+		return miEJB.listarNoticias();
 	}
-
-	/**
-	 * METODOS ADICION, BUSQUEDA Y ACTUALIZACION
-	 */
 
 	public void adicionarNoticia() {		
 		if (titulo.length() > 3 && descripcion.length() > 5	&& fuente.length() > 2){
@@ -45,47 +41,30 @@ public class NoticiaManage {
 			miEJB.adicionarNoticia(noticia);
 
 			limpiar();
-			FacesContext.getCurrentInstance().addMessage(
-					"formul",
-
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
+			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
 							"Verifique La Información Suministrada!",
 							"Noticia Adicionada"));
 		} else {
-			FacesContext.getCurrentInstance().addMessage(
-					"formul",
-
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
 							"Verifique La Información Suministrada!",
 							"Alguno de los campos no tiene el tamaño correcto!"));
 		}
 	}
 
-	/**
-	 * metodo encargado de modificar la noticia
-	 */
 	public void update() {
-
-		if (selectNoticia.getTitulo().length() > 2 && selectNoticia.getDescripcion().length() > 5)
-		{
-
+		if (selectNoticia.getTitulo().length() > 2 && selectNoticia.getDescripcion().length() > 5){
 			selectNoticia.setFecha(FechaActual.timestamp());
-
 			miEJB.actualizarNoticia(selectNoticia);
-
 			limpiar();
-			FacesContext.getCurrentInstance().addMessage(
-					"form",
-
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
+			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
 							"Verifique La Información Suministrada!",
 							"Noticia Modificada"));
 		} else {
-
-			FacesContext.getCurrentInstance().addMessage(
-					"form",
-
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
 							"Verifique La Información Suministrada!",
 							"Alguno de los campos se encuentra vacio"));
 		}
@@ -108,12 +87,6 @@ public class NoticiaManage {
 	public void actualizar() {
 		miEJB.actualizarNoticia(noticia);
 	}
-
-	/**
-	 * METODOS ACCESORES Y MODIFICADORES
-	 * 
-	 * @return
-	 */
 
 	public Noticia getNoticia() {
 		return noticia;
@@ -160,7 +133,6 @@ public class NoticiaManage {
 	}
 
 	public void setSelectNoticia(Noticia selectNoticia) {
-
 		this.selectNoticia = selectNoticia;
 	}
 
