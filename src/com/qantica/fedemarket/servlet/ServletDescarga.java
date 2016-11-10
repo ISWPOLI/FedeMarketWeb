@@ -20,8 +20,10 @@ import com.qantica.fedemarket.conf.Conf;
 import com.qantica.fedemarket.ejb.ComentarioBeanRemote;
 import com.qantica.fedemarket.ejb.ContenidoBeanRemote;
 import com.qantica.fedemarket.ejb.DescargaBeanRemote;
+import com.qantica.fedemarket.ejb.UsuarioBeanRemote;
 import com.qantica.fedemarket.entidad.Contenido;
 import com.qantica.fedemarket.entidad.Descarga;
+import com.qantica.fedemarket.entidad.Usuario;
 
 /**
  * Servlet para descargar un archivo, insertar log de descarga
@@ -35,20 +37,24 @@ public class ServletDescarga extends HttpServlet {
 	Context context;
 	
 	@EJB(name="DescargaBean/remote")
-	DescargaBeanRemote miEJB;
+	DescargaBeanRemote miEJBDescarga;
 	
 	@EJB(name="ContenidoBean/remote")
 	ContenidoBeanRemote miEJBContenido;
 	
 	@EJB(name="ComentarioBean/remote")
-	ComentarioBeanRemote miEJBComentario;
+	ComentarioBeanRemote miEJBComentario;	
+
+	@EJB(name="UsuarioBean/remote")
+	UsuarioBeanRemote miEJBUsuario;
 
 	public void init() {
 		try {
-			context = new InitialContext();
-			miEJB = (DescargaBeanRemote) context.lookup("DescargaBean/remote");
+			context = new InitialContext();			
 			miEJBContenido = (ContenidoBeanRemote) context.lookup("ContenidoBean/remote");
 			miEJBComentario = (ComentarioBeanRemote) context.lookup("ComentarioBean/remote");
+			miEJBUsuario = (UsuarioBeanRemote) context.lookup("UsuarioBean/remote");
+			miEJBDescarga = (DescargaBeanRemote) context.lookup("DescargaBean/remote");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -77,6 +83,8 @@ public class ServletDescarga extends HttpServlet {
 		//Busca el contenido que se está descargando
 		Contenido miContenido = miEJBContenido.buscarContenido(Integer.parseInt(contenido));
 		
+		Usuario  miUsuario = miEJBUsuario.buscarUsuario(Integer.parseInt(usuario));
+		
 		//Aumento en 1 el contador de las descargas
 		miContenido.setDescargas(miContenido.getDescargas()+1);
 		
@@ -86,9 +94,11 @@ public class ServletDescarga extends HttpServlet {
 		//Creo un objeto Descarga para insertar en el log
 		Descarga miDescarga = new Descarga();
 		miDescarga.setId(0);
-		miDescarga.setContenido(miContenido.getId());
-		miDescarga.setUsuario(usuario);
+		miDescarga.setContenido(miContenido);
+		miDescarga.setUsuario(miUsuario);
 		miDescarga.setFecha(cadenaFecha);
+		
+		//System.out.println(miDescarga.getContenido());
 		
 		response.setContentType("text/html;charset=UTF-8");
 		
@@ -101,7 +111,7 @@ public class ServletDescarga extends HttpServlet {
 			// Se define el tipo de archivo a descargar
 			response.setContentType("image/jpg");
 			
-			miEJB.adicionarDescarga(miDescarga);
+			miEJBDescarga.adicionarDescarga(miDescarga);
 			
 			response.setContentLength((int) f.length());
 			response.setHeader("Content-Disposition", "attachment; filename=\""
@@ -122,7 +132,7 @@ public class ServletDescarga extends HttpServlet {
 			outs.close();
 			in.close();
 			
-			miEJB.adicionarDescarga(miDescarga);
+			miEJBDescarga.adicionarDescarga(miDescarga);
 			
 		} finally {
 			// out.close();
