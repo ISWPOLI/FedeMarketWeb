@@ -10,22 +10,20 @@
 	    Subcategorias Disponibles
 	</ui:define>
 
-
 	<ui:define name="contenido">
 		<center>
 			<h:form id="form" prependId="false"
 				rendered="#{seguridadBean.autenticado}">
 				<p:message id="mensaje" for="form" />
 
-
 				<p:dataTable id="dataTable" var="item"
 					value="#{subCategoriaAltertManager.lista}" paginator="true" rows="10"
 					emptyMessage="No Existen Contenidos!"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
-					<f:facet name="header">  
-            SubCategorias Disponibles
-        </f:facet>
+					<f:facet name="header"> 
+            			SubCategorias Disponibles
+        			</f:facet>
 
 					<p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"
 						headerText="Nombre" filterMatchMode="contains">
@@ -42,16 +40,11 @@
 							</p:commandButton>
 						</h:panelGrid>
 					</p:column>
-
-
 				</p:dataTable>
-
 
 				<p:dialog header="Detalle Subcategoria" widgetVar="itemDialog"
 					resizable="false" id="itemDlg" showEffect="fade"
 					hideEffect="explode" modal="true" width="400">
-
-
 
 					<h:panelGrid id="display" columns="2" cellpadding="4"
 						style="margin:0 auto;">
@@ -66,22 +59,13 @@
 						<h:outputText value="Estado:" />	
 							<p:selectBooleanCheckbox
 								value="#{subCategoriaAltertManager.subcategoria.estado}" />
-
-
 					</h:panelGrid>
 
 					<p:commandButton value="Aceptar"
 						action="#{subCategoriaAltertManager.update}"
 						onclick="itemDialog.hide()" update="dataTable" />
 				</p:dialog>
-
 			</h:form>
-
-
 		</center>
-
-
-
 	</ui:define>
-
 </ui:composition>

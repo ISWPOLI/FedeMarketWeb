@@ -189,9 +189,6 @@ public class CategoriaManage {
 		}
 	}
 
-	/*
-	 * GETTERS AND SETTERS
-	 */
 	public Categoria getCategoria() {
 		return categoria;
 	}
