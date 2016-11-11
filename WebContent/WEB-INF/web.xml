@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
 	id="WebApp_ID" 
 	version="2.5">
-  <display-name>TiendaQantica</display-name>
+  <display-name>fedemarket</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsf</welcome-file>
@@ -180,9 +180,9 @@
   
   
   
- <!-- <filter>
+ <filter>
     <filter-name>PrimeFaces FileUpload Filter</filter-name>
-	<filter-class>com.qantica.tiendaqantica.filter.FileUploadFilter</filter-class>
+	<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
      <init-param>
       <param-name>thresholdSize</param-name>
       <param-value>51200</param-value>
@@ -195,11 +195,7 @@
   <filter-mapping>
     <filter-name>PrimeFaces FileUpload Filter</filter-name>
     <servlet-name>Faces Servlet</servlet-name>
-  </filter-mapping>
-  
-   -->  
-    
-  
+  </filter-mapping>  
   
   <filter>
     <display-name>EncodingUTF</display-name>
