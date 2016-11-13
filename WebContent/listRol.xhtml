@@ -1,0 +1,75 @@
+
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+	    Roles Disponibles
+	</ui:define>
+
+	<ui:define name="contenido">
+		<center>
+			<h:form id="form" prependId="false"
+				rendered="#{seguridadBean.autenticado}">
+				<p:message id="mensaje" for="form" />
+
+				<p:dataTable id="dataTable" var="item"
+					value="#{rolManage.roles}" paginator="true" rows="10"
+					emptyMessage="¡No existen Roles registrados!"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
+            			Usuarios Disponibles 
+        			</f:facet>
+
+					<p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"
+						headerText="Nombre" filterMatchMode="contains">
+						<h:outputText value="#{item.nombre}" />
+					</p:column>
+
+					<p:column filterBy="#{item.estado}" sortBy="#{item.estado}"
+						headerText="Estado" filterMatchMode="contains">
+						<h:outputText value="#{item.estado}" />
+					</p:column>
+
+					<p:column style="width:40px">
+						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+							<p:commandButton id="selectButton" update=":form:display"
+								oncomplete="itemDialog.show()" icon="ui-icon-search"
+								title="Editar">
+								<f:setPropertyActionListener value="#{item}"
+									target="#{rolManage.rol}" />
+							</p:commandButton>
+						</h:panelGrid>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog header="Detalle Usuario" widgetVar="itemDialog"
+					resizable="false" id="itemDlg" showEffect="fade"
+					hideEffect="explode" modal="true" width="420">
+
+					<h:panelGrid id="display" columns="2" cellpadding="4"
+						style="margin:0 auto;">
+						<h:outputText value="ID:" style="display:none;" />
+						<h:inputText value="#{rolManage.rol.id}"
+							style="display:none;" />						
+						
+						<h:outputText value="Nombre: " />
+						<p:inputText value="#{rolManage.rol.nombre}" />
+						
+						<h:outputText value="Estado:" />	
+							<p:selectBooleanCheckbox
+								value="#{rolManage.rol.estado}" />
+
+					</h:panelGrid>
+
+					<p:commandButton value="Aceptar" action="#{rolManage.update}"
+						onclick="itemDialog.hide()" update="dataTable" />
+				</p:dialog>
+			</h:form>
+		</center>
+	</ui:define>
+</ui:composition>
