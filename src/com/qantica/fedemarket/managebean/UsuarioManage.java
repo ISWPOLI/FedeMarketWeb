@@ -13,6 +13,11 @@ import com.qantica.fedemarket.ejb.UsuarioBeanLocal;
 import com.qantica.fedemarket.entidad.Rol;
 import com.qantica.fedemarket.entidad.Usuario;
 
+/**
+ * Manejador del bean Usuario
+ * @author Juan Rubiano
+ * 13/11/16 
+ */
 @ManagedBean
 public class UsuarioManage {
 
@@ -22,12 +27,12 @@ public class UsuarioManage {
 	@EJB(name = "RolBean/local")
 	RolBeanLocal miEJBRol;
 	
-//	@ManagedProperty(value="#{usuario}")
 	Usuario usuario = new Usuario();
 	
 	int rol;
 	
 	List<Rol> roles;
+	List<Usuario> usuarios;
 	
 	int id;
 	String nombre;
@@ -150,6 +155,15 @@ public class UsuarioManage {
 
 	public void setRol(int rol) {
 		this.rol = rol;
+	}
+
+	public List<Usuario> getUsuarios() {
+		usuarios = miEJB.listarUsuarios();
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 	
 	
