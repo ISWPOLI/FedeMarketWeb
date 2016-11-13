@@ -39,51 +39,47 @@ public class CategoriaManage {
 	Subcategoria subCategoria;
 
 	private UploadedFile file;
-
+	
+	private String nombre;
+	private String descripcion;
+	int rol;
+	
+	public List<Subcategoria> subCategorias = new ArrayList<Subcategoria>();	
+	private List<Rol> listaRoles;
+	
 	int id_categoria = 0;
 	int id_intercategoria = 0;
 	int id_subcategoria = 0;
-
-	public List<Subcategoria> subCategorias = new ArrayList<Subcategoria>();	
-	private List<Rol> listaRoles;
 		
-	public void adicionarCategoria() {
-		
+	public void adicionarCategoria() {		
 		//Codifica el nombre y la descripción en UTF-8
 		try {
-			categoria.setNombre(new String(categoria.getNombre().getBytes("ISO-8859-1"), "UTF-8"));
-			categoria.setDescripcion(new String(categoria.getDescripcion().getBytes("ISO-8859-1"), "UTF-8"));
-			
+			categoria.setNombre(new String(nombre.getBytes("ISO-8859-1"),"UTF-8"));
+			categoria.setDescripcion(new String(descripcion.getBytes("ISO-8859-1"),"UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
 
-		//Verifica que el nombre y la descripción no estén vacias
 		try {
-			if (categoria.getNombre().length() == 0	|| categoria.getDescripcion().length() == 0) {
+			if (nombre.isEmpty() || descripcion.isEmpty()) {
 				FacesContext.getCurrentInstance().addMessage("formul",
 						new FacesMessage(FacesMessage.SEVERITY_ERROR,
 								"Verifique la información suministrada.",
 								"Alguno de los campos se encuentra vacio."));
 			} else if (!verificarExtension()) {
-
-				FacesContext
-						.getCurrentInstance()
-						.addMessage(
-								"formul",
-								new FacesMessage(
+				FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 										FacesMessage.SEVERITY_ERROR,
 										"El archivo seleccionado en el campo \"Seleccione Un Icono \" no es una imagen.",
 										"El archivo seleccionado en el campo \"Seleccione Un Icono \" no es una imagen."));
 			} else if (copyFile(file.getFileName(), file.getInputstream())) {
-				categoria.setRol(categoria.getRol());
+				categoria.setRol(miEJBRol.buscarRol(rol));
 				categoria.setIcono(file.getFileName());
 				categoria.setEstado(true);
 				miEJBCategoria.adicionarCategoria(categoria);
 				categoria = new Categoria();
 
-				FacesContext.getCurrentInstance().addMessage("formul",
-						new FacesMessage(FacesMessage.SEVERITY_INFO,
+				FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+						FacesMessage.SEVERITY_INFO,
 								"Verifique la información suministrada.",
 								"Categoria adicionada"));
 			} else {
@@ -95,7 +91,7 @@ public class CategoriaManage {
 			}
 
 		} catch (Exception e) {
-			e.getStackTrace();
+			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage("formul",
 							new FacesMessage(FacesMessage.SEVERITY_ERROR,
 									"Verifique la información suministrada.",
@@ -105,7 +101,7 @@ public class CategoriaManage {
 	
 	/**
 	 * Lista los roles para el CheckList de ingreso de contenido
-	 * @return
+	 * @return List roles
 	 */
 	public List<Rol> getRoles(){
 		listaRoles = miEJBRol.listarRoles();
@@ -113,35 +109,34 @@ public class CategoriaManage {
 	}
 
 	/**
-	 * metodo encargado de verificar si el archivo ingresado es una imagen
-	 * 
-	 * @return
+	 * verifica si el archivo es una imagen
+	 * @return boolean true si es una imagen, false si no
 	 */
 	private boolean verificarExtension() {
-
-		String[] img = ExtensionArchivo.contenidoImg;
-		for (int i = 0; i < img.length; i++) {
-
-			if (file.getFileName().contains(img[i])) {
-				return true;
+		if(file == null ){
+			System.out.println("Paila el archivo entro nulo");
+			return false;
+		}else{
+			String[] img = ExtensionArchivo.contenidoImg;
+			for (int i = 0; i < img.length; i++) {
+				if (file.getFileName().contains(img[i])) {
+					return true;
+				}
 			}
+			return false;
 		}
-		return false;
+		
 	}
 
 	/**
-	 * METODO PARA LA CARGA DE LA IMAGEN AL SERVIDOR
-	 * 
-	 * @param fileName
+	 * Método que carga el archivo al servidor
+	 * @param fileName archivo
 	 * @param in
-	 * @return
+	 * @return boolean true si pasa, false si no
 	 */
 	public boolean copyFile(String fileName, InputStream in) {
-
 		try {
-
 			File mFile = new File(Conf.RUTA_ICO_CONTENIDO + fileName);
-			// write the inputStream to a FileOutputStream
 			OutputStream out = new FileOutputStream(mFile);
 
 			int read = 0;
@@ -189,9 +184,6 @@ public class CategoriaManage {
 		}
 	}
 
-	/*
-	 * GETTERS AND SETTERS
-	 */
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -244,4 +236,46 @@ public class CategoriaManage {
 		this.file = file;
 	}
 
+	public Subcategoria getSubCategoria() {
+		return subCategoria;
+	}
+
+	public void setSubCategoria(Subcategoria subCategoria) {
+		this.subCategoria = subCategoria;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public int getRol() {
+		return rol;
+	}
+
+	public void setRol(int rol) {
+		this.rol = rol;
+	}
+
+	public List<Rol> getListaRoles() {
+		listaRoles = miEJBRol.listarRoles();
+		return listaRoles;
+	}
+
+	public void setListaRoles(List<Rol> listaRoles) {
+		this.listaRoles = listaRoles;
+	}
+	
+	
 }

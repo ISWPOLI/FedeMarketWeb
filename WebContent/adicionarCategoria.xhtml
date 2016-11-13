@@ -22,16 +22,16 @@
 					<h:panelGrid columns="2" border="0">
 
 						<h:outputText value="Nombre: *" />
-						<h:inputText value="#{categoriaManage.categoria.nombre}" maxlength="20"/>
+						<h:inputText value="#{categoriaManage.nombre}" maxlength="20"/>
 						
 						<h:outputText value="Seleccione Un Icono: *" />
 						<p:fileUpload value="#{categoriaManage.file}" mode="simple" style="width:250px;"/>
 
 						<h:outputText value="Descripción: *" />
-						<p:inputTextarea rows="6" cols="33" value="#{categoriaManage.categoria.descripcion}"/>
+						<p:inputTextarea rows="6" cols="33" value="#{categoriaManage.descripcion}"/>
 						
-						<h:outputText value="Roles: *" />
-						<h:selectOneMenu value="#{categoriaManage.categoria.rol}">
+						<h:outputText value="Rol: *" />
+						<h:selectOneMenu value="#{categoriaManage.rol}">
 							<f:selectItems value="#{categoriaManage.roles}" var="rol"
 								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
 						</h:selectOneMenu> 

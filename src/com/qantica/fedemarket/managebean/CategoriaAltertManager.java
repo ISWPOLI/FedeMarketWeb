@@ -24,6 +24,12 @@ import com.qantica.fedemarket.entidad.Subcategoria;
 import com.qantica.fedemarket.mundo.ExtensionArchivo;
 import com.qantica.fedemarket.mundo.FechaActual;
 
+/**
+ * Manejador del bean Categoria
+ * @author Juan Rubiano	
+ * 13/11/16
+ *
+ */
 @ManagedBean
 @ViewScoped
 public class CategoriaAltertManager {
@@ -32,23 +38,15 @@ public class CategoriaAltertManager {
 	CategoriaBeanRemote miEJB;
 	
 	private Categoria categoria = new Categoria();
-
 	private List<Categoria> lista;
-
 	int id;
-
 	private UploadedFile file;
-
 	
-	public void delete(){
-		
+	public void delete(){		
 		System.out.println("Entro a eliminar el codigo: "+categoria.getId());
 	}
 	
-	public void update() {
-
-		System.out.println(categoria.getNombre()+"estado: "+categoria.getEstado());
-		
+	public void update(){
 		try {
 			categoria.setNombre(new String(categoria.getNombre().getBytes("ISO-8859-1"), "UTF-8"));
 			categoria.setDescripcion(new String(categoria.getDescripcion().getBytes("ISO-8859-1"), "UTF-8"));
@@ -63,39 +61,28 @@ public class CategoriaAltertManager {
 					categoria.setIcono(file.getFileName());
 				}
 			}
-
 			miEJB.actualizarCategoria(categoria);
-			FacesContext.getCurrentInstance().addMessage(
-					"form",
-
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"Categoria Actualizada!",
-							"El Categoria Se Actualizo Correctamente!"));
+			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
+							"Categoria actualizada.",
+							"El categoria se actualizó correctamente."));
 		} catch (Exception e) {
-
-			FacesContext.getCurrentInstance().addMessage(
-					"form",
-
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Error En La ActualizaciÃ³n!",
-							"Error En La ActualizaciÃ³n. Intentelo Mas Tarde!"));
+			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+							"Error en la actualización",
+							"Error en la actualización. Comuníquese con el administrador."));
 		}
-
 	}
 
 	/**
-	 * METODO PARA LA CARGA DE EL ICONO AL SERVIDOR
-	 * 
+	 * Método para la carga de la imágen al servidor
 	 * @param fileName
 	 * @param in
 	 * @return
 	 */
 	public boolean copyFile(String fileName, InputStream in) {
-
 		try {
-
 			File mFile = new File(Conf.RUTA_ICO_CONTENIDO + fileName);
-			// write the inputStream to a FileOutputStream
 			OutputStream out = new FileOutputStream(mFile);
 
 			int read = 0;
@@ -108,44 +95,32 @@ public class CategoriaAltertManager {
 			in.close();
 			out.flush();
 			out.close();
-
-			System.out.println("[Upload] - Nuevo Archivo Creado!");
 			return true;
-
 		} catch (IOException e) {
-			System.out.println("[Upload] - Error Cargando el Archivo!");
+			e.printStackTrace();
 			return false;
 		}
 
 	}
 
 	/**
-	 * Metodo encargado de verificar si el archivo existe o
-	 * 
-	 * @return booleano con la respuesta
+	 * Metodo encargado de verificar si el archivo es válido
+	 * @return boolean true si es válido, false si no
 	 */
 	private boolean isValidFile(UploadedFile file) {
-
 		if (file != null) {
-
 			return verificarExtension(file);
 		}
-
 		return false;
-
 	}
 
 	/**
-	 * metodo encargado de verificar si la extension del archivo es la correcta
-	 * 
-	 * @return
+	 * Método que verifica si el archivo es una imágen
+	 * @return boolean true si es una imágen, false si no.
 	 */
 	private boolean verificarExtension(UploadedFile file) {
-
 		String[] cont = ExtensionArchivo.contenidoImg;
-
 		for (int i = 0; i < cont.length; i++) {
-
 			if (file.getFileName().contains(cont[i])) {
 				i = cont.length + 1;
 			} else if (i == cont.length - 1) {
