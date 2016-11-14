@@ -5,42 +5,54 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import com.qantica.fedemarket.ejb.RolBeanLocal;
 import com.qantica.fedemarket.ejb.UsuarioBeanLocal;
 import com.qantica.fedemarket.entidad.Rol;
 import com.qantica.fedemarket.entidad.Usuario;
+import com.qantica.fedemarket.mundo.FechaActual;
 
 /**
  * Manejador del bean Usuario
  * @author Juan Rubiano
+<<<<<<< HEAD
  * 13/11/16 
+=======
+ * 13/11/16
+>>>>>>> refs/remotes/origin/master
  */
 @ManagedBean
 public class UsuarioManage {
 
 	@EJB(name = "UsuarioBean/local")
 	UsuarioBeanLocal miEJB;
-	
+
 	@EJB(name = "RolBean/local")
 	RolBeanLocal miEJBRol;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/master
 	Usuario usuario = new Usuario();
-	
+
 	int rol;
-	
+
 	List<Rol> roles;
 	List<Usuario> usuarios;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/master
 	int id;
 	String nombre;
 	String apellido;
 	String identificacion;
 	String user;
 	String pass;	
-	
+
 	public void adicionarUsuario(){		
 		if (!nombre.isEmpty() && !apellido.isEmpty() && !identificacion.isEmpty() &&
 				!user.isEmpty() && !pass.isEmpty()){
@@ -50,18 +62,35 @@ public class UsuarioManage {
 			usuario.setUsuario(user);
 			usuario.setContrasena(pass);
 			usuario.setRol(miEJBRol.buscarRol(rol));
-			
+
 			miEJB.adicionarUsuario(usuario);
-			
+
 			limpiar();
+
+			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
+					"Verifique la información suministrada.",
+					"Usuario Adicionado"));
+
 		}else{
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
-							"Verifique La Información Suministrada!",
-							"Usuario Adicionado"));
+					"Verifique La información suministrada.",
+					"Alguno de los campos se encuentra sin diligenciar"));
 		}
 	}
-	
+
+	public void update() {
+		usuario.setRol(miEJBRol.buscarRol(rol));
+		miEJB.actualizarUsuario(usuario);
+		limpiar();
+		FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+				FacesMessage.SEVERITY_INFO,
+				"Verifique la información suministrada.",
+				"Noticia modificada"));
+
+	}
+
 	public void limpiar(){
 		usuario = new Usuario();
 		nombre = "";
@@ -71,7 +100,7 @@ public class UsuarioManage {
 		pass = "";
 		rol = 0;
 	}
-	
+
 	public List<Rol> getRoles() {
 		roles = miEJBRol.listarRoles();
 		return roles;
@@ -165,7 +194,12 @@ public class UsuarioManage {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+
+>>>>>>> refs/remotes/origin/master
 
 }

@@ -1,5 +1,3 @@
-
-
 <ui:composition template="index.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -11,11 +9,8 @@
 	    Adicionar Categoria Secundaria
 	</ui:define>
 
-
 	<ui:define name="contenido">
-
 		<p:panel header="Adicionar Subcategoria">
-
 			<center>
 				<h:form id="formul">
 					<p:message id="mensaje" for="formul" />
@@ -31,29 +26,13 @@
 							<f:selectItems value="#{subCategoriaManage.categorias}"
 								var="item" itemLabel="#{item.nombre}" itemValue="#{item.id}" />
 							<p:ajax update="intercategorias" />
-						</p:selectOneMenu>
-
-						<h:outputText value="Sub Categoria: *" />
-
-						<p:selectOneMenu id="intercategorias" style="width:250px;"
-							value="#{subCategoriaManage.id_intercategoria}">
-
-							<f:selectItem
-								itemLabel="Seleccione Una Subcategoria" itemValue="0"/>
-
-							<f:selectItems value="#{subCategoriaManage.categoriasSub}"
-								var="item" itemLabel="#{item.nombre}" itemValue="#{item.id}" />
-						</p:selectOneMenu>
+						</p:selectOneMenu>						
 
 					</h:panelGrid>
-
 					<p:commandButton value="Aceptar"
 						action="#{subCategoriaManage.adicionarSubCategoria}" ajax="false" />
 				</h:form>
 			</center>
 		</p:panel>
-
-
 	</ui:define>
-
 </ui:composition>

@@ -1,6 +1,5 @@
 ﻿package com.qantica.fedemarket.managebean;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,17 +9,25 @@ import javax.faces.context.FacesContext;
 
 import com.qantica.fedemarket.mundo.FechaActual;
 import com.qantica.fedemarket.ejb.NoticiaBeanRemote;
+import com.qantica.fedemarket.ejb.RolBeanRemote;
 import com.qantica.fedemarket.entidad.Noticia;
+import com.qantica.fedemarket.entidad.Rol;
 
 @ManagedBean
 public class NoticiaManage {
 
 	@EJB(name = "NoticiaBean/remote")
 	NoticiaBeanRemote miEJB;
-
+	
+	@EJB(name = "RolBean/remote")
+	RolBeanRemote miEJBrol;
+	
+	List<Rol> roles;
+	
 	Noticia noticia = new Noticia();
 	Noticia selectNoticia = new Noticia();
 	int id;
+	int rol;
 
 	String titulo;
 	String descripcion;
@@ -31,25 +38,35 @@ public class NoticiaManage {
 	}
 
 	public void adicionarNoticia() {		
-		if (titulo.length() > 3 && descripcion.length() > 5	&& fuente.length() > 2){
-			noticia.setId(0);
+		if (!titulo.isEmpty() && !descripcion.isEmpty() && !fuente.isEmpty()){			
 			noticia.setTitulo(titulo);
 			noticia.setDescripcion(descripcion);
 			noticia.setFuente(fuente);
+			noticia.setRol(miEJBrol.buscarRol(rol));
 			noticia.setFecha(FechaActual.timestamp());
 
 			miEJB.adicionarNoticia(noticia);
 
 			limpiar();
+			
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
 							"Verifique la información suministrada.",
+<<<<<<< HEAD
 							"Noticia adicionada."));
 		} else {
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 							"Verifique la información suministrada-",
 							"Alguno de los campos no tiene el tamaño correcto."));
+=======
+							"Noticia adicionada"));
+		} else {
+			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+							"Verifique la información suministrada.",
+							"Alguno de los campos se encuentra vacio."));
+>>>>>>> refs/remotes/origin/master
 		}
 	}
 
@@ -61,12 +78,20 @@ public class NoticiaManage {
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
 							"Verifique la información suministrada.",
+<<<<<<< HEAD
 							"Noticia modificada."));
+=======
+							"Noticia modificada"));
+>>>>>>> refs/remotes/origin/master
 		} else {
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 							"Verifique la información suministrada.",
+<<<<<<< HEAD
 							"Alguno de los campos se encuentra vacio."));
+=======
+							"Alguno de los campos se encuentra vacio"));
+>>>>>>> refs/remotes/origin/master
 		}
 	}
 
@@ -136,5 +161,23 @@ public class NoticiaManage {
 		this.selectNoticia = selectNoticia;
 	}
 
+	public List<Rol> getRoles() {
+		roles = miEJBrol.listarRoles();
+		return roles;
+	}
 
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+
+	public int getRol() {
+		return rol;
+	}
+
+	public void setRol(int rol) {
+		this.rol = rol;
+	}
+	
+	
+	
 }
