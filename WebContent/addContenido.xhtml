@@ -65,12 +65,6 @@
 								itemValue="#{player.id}" />
 							<p:ajax update="subcategories" />
 						</p:selectOneMenu>
-						
-						<h:outputText value="Rol: *" />
-						<h:selectOneMenu value="#{usuarioManage.rol}">
-							<f:selectItems value="#{usuarioManage.roles}" var="rol"
-								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
-						</h:selectOneMenu>
 
 
 					</h:panelGrid>

@@ -6,62 +6,47 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import com.qantica.fedemarket.ejb.SubcategoriaBeanRemote;
 import com.qantica.fedemarket.entidad.Subcategoria;
 
+@ViewScoped
 @ManagedBean
 public class SubCategoriaAltertManager {
 
-	/**
-	 * EJB para la conexion con la capa de negocio
-	 */
 	@EJB(name = "SubCategoriaBean/remote")
 	SubcategoriaBeanRemote miEJB;
-
-
-	/**
-	 * ATRIBUTOS REQUERIDOS PARA LA INSERCION DE UN CONTENIDO
-	 */
+	
 	private Subcategoria subcategoria = new Subcategoria();
 	private List<Subcategoria> lista ;
 
 	int id;
 
 	public void update() {
-		try
-		{
-
+		try{
 			miEJB.actualizarSubcategoria(subcategoria);
-			FacesContext.getCurrentInstance().addMessage(
-					"form",
-
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"Subcategoria Actualizada!",
-							"La Subcategoria Se Actualizo Correctamente!"));
+			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
+							"Subcategoria actualizada!",
+							"La Subcategoria se actualizó correctamente."));
 		} catch (Exception e) {
-
-
-			FacesContext.getCurrentInstance().addMessage(
-					"form",
-
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Error En La ActualizaciÃ³n!",
-							"Error En La ActualizaciÃ³n. Intentelo Mas Tarde!"));
+			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+							"Error en la actualización.",
+							"Error en la actualización. Comuníquese con el administrador."));
 		}
-
 	}
 
-	public List<Subcategoria> getLista(int idCategoria) {
-		lista=miEJB.listarSubcategorias(idCategoria);
+	public List<Subcategoria> getLista() {
+		lista = miEJB.listarSubcategoriasServlet();
 		return lista;
 	}
 
 	public void setLista(List<Subcategoria> lista) {
 		this.lista = lista;
 	}
-
 
 	public Subcategoria getSubcategoria() {
 		return subcategoria;
@@ -78,7 +63,5 @@ public class SubCategoriaAltertManager {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 }
