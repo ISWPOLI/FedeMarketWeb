@@ -66,7 +66,7 @@ public class RolManage {
 	}
 
 	public List<Rol> getRoles() {
-		roles = miEJBRol.listarRoles();
+		roles = miEJBRol.listarTodosRoles();
 		return roles;
 	}
 
