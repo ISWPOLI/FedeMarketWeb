@@ -3,6 +3,17 @@ body {
 	background-attachment: fixed;
 }
 
+.ui-widget-header{
+	background:white;
+}
+.ui-datatable-header{
+	background:white;	
+}
+
+.actions{
+	border-color:white;
+}
+
 div.principal {
 	position: absolute;
 	width: 800px;
