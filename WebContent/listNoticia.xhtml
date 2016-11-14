@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="titulo">
-	    Contenido Disponible
+	    Noticias Disponible
 	</ui:define>
 
 	<ui:define name="contenido">
@@ -18,11 +18,11 @@
 
 				<p:dataTable id="dataTable" var="item"
 					value="#{noticiaManage.noticias}" paginator="true" rows="10"
-					emptyMessage="No Existen Contenidos!"
+					emptyMessage="No existen noticias registradas."
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
 					<f:facet name="header">  
-            			Contenido Disponible  
+            			Noticias Disponible  
         			</f:facet>
 
 					<p:column filterBy="#{item.titulo}" sortBy="#{item.titulo}"
@@ -43,7 +43,7 @@
 					<p:column style="width:40px">
 						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
 							<p:commandButton id="selectButton" update=":form:display"
-								oncomplete="itemDialog.show()" image="images/btn_edit.png"
+								oncomplete="itemDialog.show()" icon="ui-icon-pencil"
 								title="Editar">
 								<f:setPropertyActionListener value="#{item}"
 									target="#{noticiaManage.selectNoticia}" />
