@@ -31,15 +31,12 @@ public class NoticiaManage {
 	RolBeanRemote miEJBrol;
 	
 	List<Rol> roles;
+	List<Noticia> noticias;
 	
 	Noticia noticia = new Noticia();
 	int id;
 	int rol;
 
-
-	public List<Noticia> getNoticias() {
-		return miEJB.listarNoticias();
-	}
 
 	public void adicionarNoticia() {		
 		if (!noticia.getTitulo().isEmpty() && !noticia.getDescripcion().isEmpty() && !noticia.getFuente().isEmpty()){
@@ -123,8 +120,16 @@ public class NoticiaManage {
 
 	public void setRol(int rol) {
 		this.rol = rol;
+	}	
+
+	public List<Noticia> getNoticias() {
+		noticias = miEJB.listarNoticias();
+		return noticias;
 	}
-	
+
+	public void setNoticias(List<Noticia> noticias) {
+		this.noticias = noticias;
+	}
 	
 	
 }
