@@ -60,8 +60,15 @@ public class ServletSubCategoria extends HttpServlet {
 			response.setContentType("text/html;charset=UTF-8");
 
 			PrintWriter out = response.getWriter();
+<<<<<<< HEAD
+
+			if(misContenidos.isEmpty()){
+				out.print("<404>");
+			}else{
+=======
 			
 			if(!misContenidos.isEmpty()){
+>>>>>>> master
 				for (int i = 0; i < misContenidos.size(); i++) {
 					//Valido si la categoria del contenido está activa
 					if (misContenidos.get(i).getCategoria().getEstado()) {
@@ -84,6 +91,13 @@ public class ServletSubCategoria extends HttpServlet {
 									.getId() + ">");
 						}
 					}
+<<<<<<< HEAD
+				}			
+			
+			}
+				out.close();
+		} catch (Exception e) {
+=======
 				}	
 			}else{
 				out.println("<404");
@@ -91,6 +105,7 @@ public class ServletSubCategoria extends HttpServlet {
 					
 			out.close();
 		} catch (NumberFormatException e) {
+>>>>>>> master
 			e.printStackTrace();
 			PrintWriter out = response.getWriter();
 			out.println("<503");
