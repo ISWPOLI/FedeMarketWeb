@@ -23,6 +23,7 @@ public class SubCategoriaManage {
 	CategoriaBeanRemote miEJBCategoria;
 
 	Subcategoria subCategoria = new Subcategoria();
+	
 	int id_intercategoria = -1;
 	int categoria = 1;
 	int id;

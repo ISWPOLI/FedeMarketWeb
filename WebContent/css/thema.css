@@ -118,9 +118,6 @@
 
 .ui-widget-header {
 	border: 1px solid #bbbbbb;
-	background: #330000
-		url(../images/ui-bg_diagonals-medium_50_330000_40x40.png) 50% 50%
-		repeat;
 	color: #ffffff;
 	font-weight: bold;
 }

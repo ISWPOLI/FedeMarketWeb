@@ -17,23 +17,29 @@
 					<h:panelGrid columns="2" border="0">
 					
 						<h:outputText value="Nombre(s): *" />
-						<p:inputText value="#{noticiaManage.titulo}" id="titulo" maxlength="50"/>
+						<p:inputText value="#{usuarioManage.nombre}" id="titulo" maxlength="50"/>
 						 
 						<h:outputText value="Apellido(s): *" />
-						<p:inputTextarea rows="6" cols="33" value="#{noticiaManage.descripcion}" maxLength="160"/> 
+						<p:inputText rows="6" cols="33" value="#{usuarioManage.apellido}" maxLength="160"/> 
 
 						<h:outputText value="Identificación: *" />
-						<p:inputText value="#{noticiaManage.fuente}" maxlength="20"/>
+						<p:inputText value="#{usuarioManage.identificacion}" maxlength="20"/>
 
 						<h:outputText value="Usuario: *" />
-						<p:inputText value="#{noticiaManage.fuente}" maxlength="20"/>
+						<p:inputText value="#{usuarioManage.user}" maxlength="20"/>
 						
 						<h:outputText value="Contraseña: *" />
-						<p:inputText value="#{noticiaManage.fuente}" maxlength="20"/>
+						<p:inputText value="#{usuarioManage.pass}" maxlength="20"/>
+						
+						<h:outputText value="Rol: *" />
+						<h:selectOneMenu value="#{usuarioManage.rol}">
+							<f:selectItems value="#{usuarioManage.roles}" var="rol"
+								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
+						</h:selectOneMenu>
 						
 					</h:panelGrid>
 					<p:commandButton value="Aceptar"
-						action="#{noticiaManage.adicionarNoticia}" ajax="false" />
+						action="#{usuarioManage.adicionarUsuario}" ajax="false" />
 				</h:form>
 			</center>
 		</p:panel>

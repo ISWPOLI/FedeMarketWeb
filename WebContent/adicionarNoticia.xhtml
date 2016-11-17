@@ -19,13 +19,19 @@
 					<h:panelGrid columns="2" border="0">
 
 						<h:outputText value="Titulo: *" />
-						<p:inputText value="#{noticiaManage.titulo}" id="titulo" maxlength="50"/>
+						<p:inputText value="#{noticiaManage.noticia.titulo}" id="titulo" maxlength="50"/>
 						 
 						<h:outputText value="Descripción: *" />
-						<p:inputTextarea rows="6" cols="33" value="#{noticiaManage.descripcion}" maxLength="160"/> 
+						<p:inputTextarea rows="6" cols="33" value="#{noticiaManage.noticia.descripcion}" maxLength="160"/> 
 
 						<h:outputText value="Fuente: *" />
-						<p:inputText value="#{noticiaManage.fuente}" maxlength="20"/>
+						<p:inputText value="#{noticiaManage.noticia.fuente}" maxlength="20"/>
+						
+						<h:outputText value="Rol: *" />
+						<h:selectOneMenu value="#{noticiaManage.rol}">
+							<f:selectItems value="#{noticiaManage.roles}" var="rol"
+								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
+						</h:selectOneMenu>
 
 					</h:panelGrid>
 

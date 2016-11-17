@@ -3,6 +3,35 @@ body {
 	background-attachment: fixed;
 }
 
+.ui-panel-titlebar{
+	border:none;
+	float:none;
+	text-align:center;
+	color: #9B0329;
+}
+
+.ui-dialog-title{
+	float:none !important;
+	text-align:center !important;
+	padding-top:14px !important;
+}
+
+.ui-dt-c{
+	text-align:center;
+}
+
+.ui-widget-header{	
+	color: #9B0329;
+	background:white !important;
+}
+.ui-datatable-header{
+	background:white;	
+}
+
+.actions{
+	border-color:white;
+}
+
 div.principal {
 	position: absolute;
 	width: 800px;
