@@ -23,8 +23,6 @@ import com.qantica.fedemarket.entidad.Subcategoria;
 /**
  * Servlet para la Subcategoria
  * @author Juan Rubiano
- * Q-antica Ltda.
- * Colombia 
  * 24/08/2016
  */
 
@@ -55,40 +53,47 @@ public class ServletSubCategoria extends HttpServlet {
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		try {
 			
-			int idRol = Integer.parseInt(request.getParameter("rol"));
+			int idCategoria = Integer.parseInt(request.getParameter("categoria"));
 			
-			List<Subcategoria> misContenidos = miEJB.listarSubcategorias(idRol);			
+			List<Subcategoria> misContenidos = miEJB.listarSubcategorias(idCategoria);			
 
 			response.setContentType("text/html;charset=UTF-8");
 
 			PrintWriter out = response.getWriter();
-
-			for (int i = 0; i < misContenidos.size(); i++) {
-				//Valido si la categoria del contenido está activa
-				if (misContenidos.get(i).getCategoria().getEstado()) {
-					if (misContenidos.get(i).getMiSubCategoria() != null) {
-						out.println(misContenidos.get(i).getId()
-								+ "|"
-								+ misContenidos.get(i).getNombre()
-								+ "|"
-								+ misContenidos.get(i).getMiSubCategoria()
-								.getId()
-								+ "|"
-								+ misContenidos.get(i).getCategoria()
-								.getId() + ">");
-					} else {
-						out.println(misContenidos.get(i).getId()
-								+ "|"
-								+ misContenidos.get(i).getNombre()
-								+ "|0|"
-								+ misContenidos.get(i).getCategoria()
-								.getId() + ">");
+			
+			if(!misContenidos.isEmpty()){
+				for (int i = 0; i < misContenidos.size(); i++) {
+					//Valido si la categoria del contenido está activa
+					if (misContenidos.get(i).getCategoria().getEstado()) {
+						if (misContenidos.get(i).getMiSubCategoria() != null) {
+							out.println(misContenidos.get(i).getId()
+									+ "|"
+									+ misContenidos.get(i).getNombre()
+									+ "|"
+									+ misContenidos.get(i).getMiSubCategoria()
+									.getId()
+									+ "|"
+									+ misContenidos.get(i).getCategoria()
+									.getId() + ">");
+						} else {
+							out.println(misContenidos.get(i).getId()
+									+ "|"
+									+ misContenidos.get(i).getNombre()
+									+ "|0|"
+									+ misContenidos.get(i).getCategoria()
+									.getId() + ">");
+						}
 					}
-				}
-			}			
+				}	
+			}else{
+				out.println("<404");
+			}
+					
 			out.close();
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<503");
 		}
 	}
 
