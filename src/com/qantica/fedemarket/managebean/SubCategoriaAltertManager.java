@@ -37,7 +37,7 @@ public class SubCategoriaAltertManager {
 	}
 
 	public List<Subcategoria> getLista() {
-		lista = miEJB.listarSubcategorias(); 
+		lista = miEJB.listarSubcategoriasServlet(); 
 		return lista;
 	}
 
