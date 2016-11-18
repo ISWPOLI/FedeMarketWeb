@@ -21,8 +21,6 @@ import com.qantica.fedemarket.entidad.Contenido;
 /**
  * Servlet que trae la lista de las categorias de acuerdo al rol
  * @author Juan Rubiano
- * Q-antica Ltda.
- * Colombia
  * 19/08/2016
  */
 

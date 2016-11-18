@@ -52,23 +52,18 @@ public class ServletSubCategoria extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		try {
-			
+
 			int idCategoria = Integer.parseInt(request.getParameter("categoria"));
-			
+
 			List<Subcategoria> misContenidos = miEJB.listarSubcategorias(idCategoria);			
 
 			response.setContentType("text/html;charset=UTF-8");
 
 			PrintWriter out = response.getWriter();
-<<<<<<< HEAD
 
 			if(misContenidos.isEmpty()){
 				out.print("<404>");
 			}else{
-=======
-			
-			if(!misContenidos.isEmpty()){
->>>>>>> master
 				for (int i = 0; i < misContenidos.size(); i++) {
 					//Valido si la categoria del contenido está activa
 					if (misContenidos.get(i).getCategoria().getEstado()) {
@@ -91,21 +86,11 @@ public class ServletSubCategoria extends HttpServlet {
 									.getId() + ">");
 						}
 					}
-<<<<<<< HEAD
 				}			
-			
+
 			}
-				out.close();
-		} catch (Exception e) {
-=======
-				}	
-			}else{
-				out.println("<404");
-			}
-					
 			out.close();
-		} catch (NumberFormatException e) {
->>>>>>> master
+		} catch (Exception e) {
 			e.printStackTrace();
 			PrintWriter out = response.getWriter();
 			out.println("<503");
@@ -116,7 +101,7 @@ public class ServletSubCategoria extends HttpServlet {
 	 * POST
 	 */
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		try {
+		try{
 			int idCategoria = Integer.parseInt(request.getParameter("categoria"));
 
 			List<Subcategoria> misContenidos = miEJB.listarSubcategorias(idCategoria);			
@@ -125,32 +110,39 @@ public class ServletSubCategoria extends HttpServlet {
 
 			PrintWriter out = response.getWriter();
 
-			for (int i = 0; i < misContenidos.size(); i++) {
-				//Valido si la categoria del contenido está activa
-				if (misContenidos.get(i).getCategoria().getEstado()) {
-					if (misContenidos.get(i).getMiSubCategoria() != null) {
-						out.println(misContenidos.get(i).getId()
-								+ "|"
-								+ misContenidos.get(i).getNombre()
-								+ "|"
-								+ misContenidos.get(i).getMiSubCategoria()
-								.getId()
-								+ "|"
-								+ misContenidos.get(i).getCategoria()
-								.getId() + ">");
-					} else {
-						out.println(misContenidos.get(i).getId()
-								+ "|"
-								+ misContenidos.get(i).getNombre()
-								+ "|0|"
-								+ misContenidos.get(i).getCategoria()
-								.getId() + ">");
+			if(misContenidos.isEmpty()){
+				out.print("<404>");
+			}else{
+				for (int i = 0; i < misContenidos.size(); i++) {
+					//Valido si la categoria del contenido está activa
+					if (misContenidos.get(i).getCategoria().getEstado()) {
+						if (misContenidos.get(i).getMiSubCategoria() != null) {
+							out.println(misContenidos.get(i).getId()
+									+ "|"
+									+ misContenidos.get(i).getNombre()
+									+ "|"
+									+ misContenidos.get(i).getMiSubCategoria()
+									.getId()
+									+ "|"
+									+ misContenidos.get(i).getCategoria()
+									.getId() + ">");
+						} else {
+							out.println(misContenidos.get(i).getId()
+									+ "|"
+									+ misContenidos.get(i).getNombre()
+									+ "|0|"
+									+ misContenidos.get(i).getCategoria()
+									.getId() + ">");
+						}
 					}
-				}
-			}			
+				}			
+
+			}
 			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.println("<503");
 		}
 	}
 
