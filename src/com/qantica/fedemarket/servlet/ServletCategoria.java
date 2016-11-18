@@ -37,7 +37,6 @@ public class ServletCategoria extends HttpServlet {
 	public void init() {
 		try {
 			context = new InitialContext();
-			miEJB = (CategoriaBeanRemote)context.lookup("CategoriaBean/remote");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
