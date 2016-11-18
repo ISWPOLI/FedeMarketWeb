@@ -21,11 +21,8 @@
 					rows="10" emptyMessage="No Existen Contenidos!"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
-<<<<<<< HEAD
+					
 					<f:facet name="header"> 
-=======
-					<f:facet name="header">  
->>>>>>> master
             			SubCategorias Disponibles
         			</f:facet>
 
@@ -49,10 +46,7 @@
 				<p:dialog header="Detalle Subcategoria" widgetVar="itemDialog"
 					resizable="false" id="itemDlg" showEffect="fade"
 					hideEffect="explode" modal="true" width="400">
-<<<<<<< HEAD
-
-=======
->>>>>>> master
+					
 					<h:panelGrid id="display" columns="2" cellpadding="4"
 						style="margin:0 auto;">
 
@@ -61,21 +55,12 @@
 							style="display:none;" />
 
 						<h:outputText value="Nombre:" />
-<<<<<<< HEAD
 						<p:inputText value="#{subCategoriaAltertManager.subcategoria.nombre}" />
 						
 						<h:outputText value="Estado:" />	
 							<p:selectBooleanCheckbox
 								value="#{subCategoriaAltertManager.subcategoria.estado}" />
-=======
-						<p:inputText
-							value="#{subCategoriaAltertManager.subcategoria.nombre}" />
-
-						<h:outputText value="Estado:" />
-						<p:selectBooleanCheckbox
-							value="#{subCategoriaAltertManager.subcategoria.estado}" />
-
->>>>>>> master
+								
 					</h:panelGrid>
 
 					<p:commandButton value="Aceptar"
