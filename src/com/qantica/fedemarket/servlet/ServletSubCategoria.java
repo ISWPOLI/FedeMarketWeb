@@ -37,7 +37,7 @@ public class ServletSubCategoria extends HttpServlet {
 	public void init() {
 		try {
 			context = new InitialContext();
-			miEJB = (SubcategoriaBeanRemote) context.lookup("SubCategoriaBean/remote");
+			//miEJB = (SubcategoriaBeanRemote) context.lookup("SubCategoriaBean/remote");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -72,18 +72,19 @@ public class ServletSubCategoria extends HttpServlet {
 									+ "|"
 									+ misContenidos.get(i).getNombre()
 									+ "|"
-									+ misContenidos.get(i).getMiSubCategoria()
-									.getId()
+									+ misContenidos.get(i).getMiSubCategoria().getId()
 									+ "|"
-									+ misContenidos.get(i).getCategoria()
-									.getId() + ">");
+									+ misContenidos.get(i).getCategoria().getId()
+									+ "|"
+									+ misContenidos.get(i).getIcono() + ">");
 						} else {
 							out.println(misContenidos.get(i).getId()
 									+ "|"
 									+ misContenidos.get(i).getNombre()
 									+ "|0|"
-									+ misContenidos.get(i).getCategoria()
-									.getId() + ">");
+									+ misContenidos.get(i).getCategoria().getId()
+									+ "|"
+									+ misContenidos.get(i).getIcono() + ">");
 						}
 					}
 				}			
@@ -121,19 +122,21 @@ public class ServletSubCategoria extends HttpServlet {
 									+ "|"
 									+ misContenidos.get(i).getNombre()
 									+ "|"
-									+ misContenidos.get(i).getMiSubCategoria()
-									.getId()
+									+ misContenidos.get(i).getMiSubCategoria().getId()
 									+ "|"
-									+ misContenidos.get(i).getCategoria()
-									.getId() + ">");
+									+ misContenidos.get(i).getCategoria().getId()
+									+ "|"
+									+ misContenidos.get(i).getIcono() + ">");
 						} else {
 							out.println(misContenidos.get(i).getId()
 									+ "|"
 									+ misContenidos.get(i).getNombre()
 									+ "|0|"
-									+ misContenidos.get(i).getCategoria()
-									.getId() + ">");
+									+ misContenidos.get(i).getCategoria().getId()
+									+ "|"
+									+ misContenidos.get(i).getIcono() + ">");
 						}
+
 					}
 				}			
 

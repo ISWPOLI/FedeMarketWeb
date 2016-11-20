@@ -12,21 +12,23 @@
 	<ui:define name="contenido">
 		<p:panel header="Adicionar Subcategoria">
 			<center>
-				<h:form id="formul">
+				<h:form id="formul" enctype="multipart/form-data">
 					<p:message id="mensaje" for="formul" />
 					<h:panelGrid columns="2" border="0">
 
 						<h:outputText value="Nombre: *" />
 						<h:inputText value="#{subCategoriaManage.subCategoria.nombre}" maxlength="20"/>
+						
+						<h:outputText value="Seleccione Un Icono: *" />
+						<p:fileUpload value="#{subCategoriaManage.file}" mode="simple" style="width:250px;"/>
 
 						<h:outputText value="Categoria: " />
-
-						<p:selectOneMenu value="#{subCategoriaManage.categoria}"
-							style="width:250px;">
-							<f:selectItems value="#{subCategoriaManage.categorias}"
-								var="item" itemLabel="#{item.nombre}" itemValue="#{item.id}" />
-							<p:ajax update="intercategorias" />
-						</p:selectOneMenu>						
+							<p:selectOneMenu value="#{subCategoriaManage.categoria}"
+								style="width:250px;">
+								<f:selectItems value="#{subCategoriaManage.categorias}"
+									var="item" itemLabel="#{item.nombre}" itemValue="#{item.id}" />
+								<p:ajax update="intercategorias" />
+							</p:selectOneMenu>						
 
 					</h:panelGrid>
 					<p:commandButton value="Aceptar"
