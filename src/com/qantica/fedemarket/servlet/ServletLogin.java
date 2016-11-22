@@ -56,7 +56,6 @@ public class ServletLogin extends HttpServlet {
 			
 			//Declaro un Usuario que contendrá la respuesta del bean 
 			Usuario aux = miEJB.login(nombre, contrasena);
-			System.out.println("USUARIO -----> "+aux);
 			
 			//Defino la decodificación de la respuesta		
 			response.setHeader("Content-Type", "text/html; charset=UTF-8");
@@ -89,7 +88,6 @@ public class ServletLogin extends HttpServlet {
 			
 			//Declaro un Usuario que contendrá la respuesta del bean 
 			Usuario aux = miEJB.login(nombre, contrasena);
-			System.out.println("USUARIO -----> "+aux);
 			
 			//Defino la decodificación de la respuesta
 			response.setHeader("Content-Type", "text/html; charset=UTF-8"); 

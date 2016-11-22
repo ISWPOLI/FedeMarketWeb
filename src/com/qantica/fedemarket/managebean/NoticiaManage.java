@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import com.qantica.fedemarket.mundo.FechaActual;
@@ -13,6 +14,13 @@ import com.qantica.fedemarket.ejb.RolBeanRemote;
 import com.qantica.fedemarket.entidad.Noticia;
 import com.qantica.fedemarket.entidad.Rol;
 
+/**
+ * Mamejador para la entidad Noticia
+ * @author Juan Rubiano	
+ * 13/11/16
+ */
+
+@ViewScoped
 @ManagedBean
 public class NoticiaManage {
 
@@ -23,69 +31,54 @@ public class NoticiaManage {
 	RolBeanRemote miEJBrol;
 	
 	List<Rol> roles;
+	List<Noticia> noticias;
 	
 	Noticia noticia = new Noticia();
-	Noticia selectNoticia = new Noticia();
 	int id;
 	int rol;
 
-	String titulo;
-	String descripcion;
-	String fuente;
-
-	public List<Noticia> getNoticias() {
-		return miEJB.listarNoticias();
-	}
 
 	public void adicionarNoticia() {		
-		if (!titulo.isEmpty() && !descripcion.isEmpty() && !fuente.isEmpty()){			
-			noticia.setTitulo(titulo);
-			noticia.setDescripcion(descripcion);
-			noticia.setFuente(fuente);
+		if (!noticia.getTitulo().isEmpty() && !noticia.getDescripcion().isEmpty() && !noticia.getFuente().isEmpty()){
+			
 			noticia.setRol(miEJBrol.buscarRol(rol));
 			noticia.setFecha(FechaActual.timestamp());
 
 			miEJB.adicionarNoticia(noticia);
-
+			
 			limpiar();
 			
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
-							"Verifique La Información Suministrada!",
-							"Noticia Adicionada"));
+							"Verifique la información suministrada.",
+							"Noticia adicionada"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-							"Verifique La Información Suministrada!",
-							"Alguno de los campos se encuentra vacio"));
+							"Verifique la información suministrada.",
+							"Alguno de los campos se encuentra vacio."));
 		}
 	}
 
 	public void update() {
-		if (selectNoticia.getTitulo().length() > 2 && selectNoticia.getDescripcion().length() > 5){
-			selectNoticia.setFecha(FechaActual.timestamp());
-			miEJB.actualizarNoticia(selectNoticia);
+		if (noticia.getTitulo().length() > 2 && noticia.getDescripcion().length() > 5){
+			noticia.setFecha(FechaActual.timestamp());
+			miEJB.actualizarNoticia(noticia);
 			limpiar();
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
-							"Verifique La Información Suministrada!",
-							"Noticia Modificada"));
+							"Verifique la información suministrada.",
+							"Noticia modificada"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-							"Verifique La Información Suministrada!",
+							"Verifique la información suministrada.",
 							"Alguno de los campos se encuentra vacio"));
 		}
 	}
 
 	public void limpiar() {
-
-		titulo = "";
-		fuente = "";
-		descripcion = "";
-
 		noticia = new Noticia();
-		selectNoticia=new Noticia();
 	}
 
 	public void buscar() {
@@ -112,38 +105,6 @@ public class NoticiaManage {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getFuente() {
-		return fuente;
-	}
-
-	public void setFuente(String fuente) {
-		this.fuente = fuente;
-	}
-
-	public Noticia getSelectNoticia() {
-		return selectNoticia;
-	}
-
-	public void setSelectNoticia(Noticia selectNoticia) {
-		this.selectNoticia = selectNoticia;
-	}
-
 	public List<Rol> getRoles() {
 		roles = miEJBrol.listarRoles();
 		return roles;
@@ -159,8 +120,16 @@ public class NoticiaManage {
 
 	public void setRol(int rol) {
 		this.rol = rol;
+	}	
+
+	public List<Noticia> getNoticias() {
+		noticias = miEJB.listarNoticias();
+		return noticias;
 	}
-	
+
+	public void setNoticias(List<Noticia> noticias) {
+		this.noticias = noticias;
+	}
 	
 	
 }

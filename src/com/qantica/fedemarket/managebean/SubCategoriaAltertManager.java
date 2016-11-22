@@ -18,24 +18,24 @@ public class SubCategoriaAltertManager {
 
 	@EJB(name = "SubCategoriaBean/remote")
 	SubcategoriaBeanRemote miEJB;
-	
+
 	private Subcategoria subcategoria = new Subcategoria();
 	private List<Subcategoria> lista ;
 
 	int id;
 
 	public void update() {
-		try{
+		try	{
 			miEJB.actualizarSubcategoria(subcategoria);
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
-							"Subcategoria actualizada!",
+							"Subcategoria actualizada.",
 							"La Subcategoria se actualizó correctamente."));
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-							"Error en la actualización.",
-							"Error en la actualización. Comuníquese con el administrador."));
+							"Error En La Actualización.",
+							"Error En La Actualización, comuníquese con el administrador."));
 		}
 	}
 
