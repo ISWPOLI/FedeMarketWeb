@@ -56,13 +56,12 @@ public class ServletComentario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-			System.out.println("Entro a --> Servlet Comentario");
 
 			int id = Integer.parseInt(request.getParameter("id_app"));
 			int valoracion = Integer.parseInt(request.getParameter("valoracion"));
 			String descripcion = request.getParameter("comentario");
 			String uid = request.getParameter("uid");
-			String uname = request.getParameter("uname");;
+			String uname = request.getParameter("uname");
 			
 			miEJB.adicionarComentario(id, uid, valoracion, descripcion, uname);
 			

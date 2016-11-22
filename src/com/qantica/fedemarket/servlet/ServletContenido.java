@@ -20,39 +20,33 @@ import com.qantica.fedemarket.entidad.Contenido;
 import com.qantica.fedemarket.entidad.Noticia;
 
 /**
- * Servlet implementation class ServletContenido
+ * Servlet que gestiona la entidad Contenido
+ * @author Juan Rubiano
+ * 22/11/2016
+ *
  */
 public class ServletContenido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	Context context;
-	// ContenidoBeanRemote miEJB;
 
 	@EJB(name="ContenidoBean/local")
 	ContenidoBeanLocal miEJB;
 
 	public void init() {
 		try {
-
 			context = new InitialContext();
-			//miEJB = (ContenidoBeanLocal) context.lookup("ContenidoBean/local");
-
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-
 	}
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public ServletContenido() {
 		super();
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * GET
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -73,7 +67,7 @@ public class ServletContenido extends HttpServlet {
 			int idSubc;
 			String isSubc = request.getParameter("subcategoria");
 			int idCate = Integer.valueOf(request.getParameter("categoria"));;
-			
+
 			if(isSubc == ""){
 				idSubc = 0;
 			}else{
@@ -125,8 +119,7 @@ public class ServletContenido extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * POST
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -136,7 +129,7 @@ public class ServletContenido extends HttpServlet {
 			int idSubc;
 			String isSubc = request.getParameter("subcategoria");
 			int idCate = Integer.valueOf(request.getParameter("categoria"));;
-			
+
 			if(isSubc == ""){
 				idSubc = 0;
 			}else{
