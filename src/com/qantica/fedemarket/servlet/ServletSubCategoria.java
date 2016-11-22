@@ -76,7 +76,7 @@ public class ServletSubCategoria extends HttpServlet {
 									+ "|"
 									+ misContenidos.get(i).getCategoria().getId()
 									+ "|"
-									+ misContenidos.get(i).getIcono() + ">");
+									+ misContenidos.get(i).getIcono() + "|>");
 						} else {
 							out.println(misContenidos.get(i).getId()
 									+ "|"
@@ -84,7 +84,7 @@ public class ServletSubCategoria extends HttpServlet {
 									+ "|0|"
 									+ misContenidos.get(i).getCategoria().getId()
 									+ "|"
-									+ misContenidos.get(i).getIcono() + ">");
+									+ misContenidos.get(i).getIcono() + "|>");
 						}
 					}
 				}			
@@ -126,7 +126,7 @@ public class ServletSubCategoria extends HttpServlet {
 									+ "|"
 									+ misContenidos.get(i).getCategoria().getId()
 									+ "|"
-									+ misContenidos.get(i).getIcono() + ">");
+									+ misContenidos.get(i).getIcono() + "|>");
 						} else {
 							out.println(misContenidos.get(i).getId()
 									+ "|"
@@ -134,7 +134,7 @@ public class ServletSubCategoria extends HttpServlet {
 									+ "|0|"
 									+ misContenidos.get(i).getCategoria().getId()
 									+ "|"
-									+ misContenidos.get(i).getIcono() + ">");
+									+ misContenidos.get(i).getIcono() + "|>");
 						}
 
 					}
