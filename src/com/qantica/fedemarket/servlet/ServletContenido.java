@@ -76,43 +76,50 @@ public class ServletContenido extends HttpServlet {
 
 			List<Contenido> misContenidos = miEJB.listarContenidoServlet(idSubc, idCate);
 			response.setContentType("text/html;charset=UTF-8");
+
 			PrintWriter out = response.getWriter();
+			
+			if(misContenidos.isEmpty()){
+				out.println("<404>");
+			}else{
+				for (int i = 0; i < misContenidos.size(); i++) {
 
-			for (int i = 0; i < misContenidos.size(); i++) {
+					if (misContenidos.get(i).getSubCategoria() != null) {
 
-				if (misContenidos.get(i).getSubCategoria() != null) {
-
-					out.println(misContenidos.get(i).getId() + "|"
-							+ misContenidos.get(i).getNombre() + "|"
-							+ misContenidos.get(i).getDescripcion() + "|"
-							+ misContenidos.get(i).getDescargas() + "|"
-							+ misContenidos.get(i).getVersion() + "|"
-							+ +misContenidos.get(i).getCategoria().getId()
-							+ "|"
-							+ misContenidos.get(i).getSubCategoria().getId()
-							+ "|" + misContenidos.get(i).getCaptura_1() + "|"
-							+ misContenidos.get(i).getCaptura_2() + "|"
-							+ misContenidos.get(i).getIcono() + "|"
-							+ misContenidos.get(i).getRating() + "|"
-							+ misContenidos.get(i).getEstado() + ">");
-				} else {
-					out.println(misContenidos.get(i).getId() + "|"
-							+ misContenidos.get(i).getNombre() + "|"
-							+ misContenidos.get(i).getDescripcion() + "|"
-							+ misContenidos.get(i).getDescargas() + "|"
-							+ misContenidos.get(i).getVersion() + "|"
-							+ +misContenidos.get(i).getCategoria().getId()
-							+ "|0|" + misContenidos.get(i).getCaptura_1() + "|"
-							+ misContenidos.get(i).getCaptura_2() + "|"
-							+ misContenidos.get(i).getIcono() + "|"
-							+ misContenidos.get(i).getRating() + "|"
-							+ misContenidos.get(i).getEstado() + ">");
+						out.println(misContenidos.get(i).getId() + "|"
+								+ misContenidos.get(i).getNombre() + "|"
+								+ misContenidos.get(i).getDescripcion() + "|"
+								+ misContenidos.get(i).getDescargas() + "|"
+								+ misContenidos.get(i).getVersion() + "|"
+								+ +misContenidos.get(i).getCategoria().getId()
+								+ "|"
+								+ misContenidos.get(i).getSubCategoria().getId()
+								+ "|" + misContenidos.get(i).getCaptura_1() + "|"
+								+ misContenidos.get(i).getCaptura_2() + "|"
+								+ misContenidos.get(i).getIcono() + "|"
+								+ misContenidos.get(i).getRating() + "|"
+								+ misContenidos.get(i).getEstado() + ">");
+					} else {
+						out.println(misContenidos.get(i).getId() + "|"
+								+ misContenidos.get(i).getNombre() + "|"
+								+ misContenidos.get(i).getDescripcion() + "|"
+								+ misContenidos.get(i).getDescargas() + "|"
+								+ misContenidos.get(i).getVersion() + "|"
+								+ +misContenidos.get(i).getCategoria().getId()
+								+ "|0|" + misContenidos.get(i).getCaptura_1() + "|"
+								+ misContenidos.get(i).getCaptura_2() + "|"
+								+ misContenidos.get(i).getIcono() + "|"
+								+ misContenidos.get(i).getRating() + "|"
+								+ misContenidos.get(i).getEstado() + ">");
+					}
 				}
-			}
-			out.close();
+				out.close();
+			}			
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.print("<503>");
 		}
 
 
