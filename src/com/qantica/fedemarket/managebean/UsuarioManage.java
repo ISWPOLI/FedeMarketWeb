@@ -16,11 +16,7 @@ import com.qantica.fedemarket.mundo.FechaActual;
 /**
  * Manejador del bean Usuario
  * @author Juan Rubiano
-<<<<<<< HEAD
  * 13/11/16 
-=======
- * 13/11/16
->>>>>>> refs/remotes/origin/master
  */
 @ManagedBean
 public class UsuarioManage {
@@ -30,22 +26,14 @@ public class UsuarioManage {
 
 	@EJB(name = "RolBean/local")
 	RolBeanLocal miEJBRol;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> refs/remotes/origin/master
 	Usuario usuario = new Usuario();
 
 	int rol;
 
 	List<Rol> roles;
 	List<Usuario> usuarios;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> refs/remotes/origin/master
 	int id;
 	String nombre;
 	String apellido;
@@ -53,31 +41,41 @@ public class UsuarioManage {
 	String user;
 	String pass;	
 
-	public void adicionarUsuario(){		
-		if (!nombre.isEmpty() && !apellido.isEmpty() && !identificacion.isEmpty() &&
-				!user.isEmpty() && !pass.isEmpty()){
-			usuario.setNombre(nombre);
-			usuario.setApellido(apellido);
-			usuario.setIdentificacion(identificacion);
-			usuario.setUsuario(user);
-			usuario.setContrasena(pass);
-			usuario.setRol(miEJBRol.buscarRol(rol));
+	public void adicionarUsuario(){
+		List<Usuario> userTemp = miEJB.buscarUsuarioIdent(this.identificacion);
+		
+		if(userTemp.isEmpty()){
+			if (!nombre.isEmpty() && !apellido.isEmpty() && !identificacion.isEmpty() &&
+					!user.isEmpty() && !pass.isEmpty()){
+				usuario.setNombre(nombre);
+				usuario.setApellido(apellido);
+				usuario.setIdentificacion(identificacion);
+				usuario.setUsuario(user);
+				usuario.setContrasena(pass);
+				usuario.setRol(miEJBRol.buscarRol(rol));
 
-			miEJB.adicionarUsuario(usuario);
+				miEJB.adicionarUsuario(usuario);
 
-			limpiar();
+				limpiar();
 
-			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
-					FacesMessage.SEVERITY_INFO,
-					"Verifique la información suministrada.",
-					"Usuario Adicionado"));
+				FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+						FacesMessage.SEVERITY_INFO,
+						"Verifique la información suministrada.",
+						"Usuario Adicionado"));
 
+			}else{
+				FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
+						FacesMessage.SEVERITY_WARN,
+						"Verifique La información suministrada.",
+						"Alguno de los campos se encuentra sin diligenciar"));
+			}
 		}else{
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
-					FacesMessage.SEVERITY_INFO,
+					FacesMessage.SEVERITY_WARN,
 					"Verifique La información suministrada.",
-					"Alguno de los campos se encuentra sin diligenciar"));
+					"Ya existe un usuario con el número de identificación ingresado."));
 		}
+		
 	}
 
 	public void update() {
@@ -194,12 +192,5 @@ public class UsuarioManage {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-<<<<<<< HEAD
-	
-	
-=======
-
-
->>>>>>> refs/remotes/origin/master
 
 }

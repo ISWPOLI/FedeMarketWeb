@@ -44,14 +44,11 @@
 						headerText="Identificación" filterMatchMode="contains">
 						<h:outputText value="#{item.identificacion}" />
 					</p:column>
-<<<<<<< HEAD
-=======
 					
 					<p:column filterBy="#{item.rol}" sortBy="#{item.rol}"
 						headerText="Rol" filterMatchMode="contains">
 						<h:outputText value="#{item.rol.nombre}" />
 					</p:column>
->>>>>>> refs/remotes/origin/master
 
 					<p:column style="width:40px">
 						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
@@ -74,23 +71,18 @@
 						<h:outputText value="ID:" style="display:none;" />
 						<h:inputText value="#{usuarioManage.usuario.id}"
 							style="display:none;" />
-
-<<<<<<< HEAD
+							
 						<h:outputText value="Titulo:" />
 						<p:inputText value="#{usuarioManage.usuario.nombre}" />
-
-						<h:outputText value="Descripción: *" />
-=======
+						
 						<h:outputText value="Nombre:" />
 						<p:inputText value="#{usuarioManage.usuario.nombre}" />
 
 						<h:outputText value="Apellido: *" />
->>>>>>> refs/remotes/origin/master
 						<p:inputTextarea rows="6" cols="28"
 							value="#{usuarioManage.usuario.apellido}"
 							maxlength="150" autoResize="false" />
-
-<<<<<<< HEAD
+							
 						<h:outputText value="Fuente: *" />
 						<p:inputText value="#{usuarioManage.usuario.usuario}" />
 						
@@ -100,8 +92,6 @@
 						<h:outputText value="Fuente: *" />
 						<p:inputText value="#{usuarioManage.usuario.contrasena}" />
 						
-						<h:outputText value="Rol: *" />
-=======
 						<h:outputText value="Usuario:" />
 						<p:inputText value="#{usuarioManage.usuario.usuario}" />
 						
@@ -112,7 +102,6 @@
 						<p:password value="#{usuarioManage.usuario.contrasena}" />
 						
 						<h:outputText value="Rol:" />
->>>>>>> refs/remotes/origin/master
 						<h:selectOneMenu value="#{usuarioManage.rol}">
 							<f:selectItems value="#{usuarioManage.roles}" var="rol"
 								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
@@ -120,12 +109,8 @@
 
 					</h:panelGrid>
 
-<<<<<<< HEAD
-					<p:commandButton value="Aceptar" action="#{noticiaManage.update}"
-=======
-					<p:commandButton value="Aceptar" action="#{usuarioManage.update}"
->>>>>>> refs/remotes/origin/master
-						onclick="itemDialog.hide()" update="dataTable" />
+					<p:commandButton value="Aceptar" action="#{noticiaManage.update}" 
+					onclick="itemDialog.hide()" update="dataTable" />
 				</p:dialog>
 			</h:form>
 		</center>
