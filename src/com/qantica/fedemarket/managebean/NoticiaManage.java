@@ -51,12 +51,13 @@ public class NoticiaManage {
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
 							"Verifique la información suministrada.",
-							"Noticia adicionada"));
+							"Noticia adicionada."));
 		} else {
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-							"Verifique la información suministrada.",
-							"Alguno de los campos se encuentra vacio."));
+							"Verifique la información suministrada-",
+							"Alguno de los campos no tiene el tamaño correcto."));
+
 		}
 	}
 
@@ -68,12 +69,13 @@ public class NoticiaManage {
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
 							"Verifique la información suministrada.",
-							"Noticia modificada"));
+							"Noticia modificada."));
 		} else {
 			FacesContext.getCurrentInstance().addMessage("form",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
 							"Verifique la información suministrada.",
-							"Alguno de los campos se encuentra vacio"));
+							"Alguno de los campos se encuentra vacio."));
+
 		}
 	}
 
