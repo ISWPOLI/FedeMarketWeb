@@ -18,7 +18,7 @@
 
 				<p:dataTable id="dataTable" var="item"
 					value="#{noticiaManage.noticias}" paginator="true" rows="10"
-					emptyMessage="No Existen Contenidos!"
+					emptyMessage="No existen noticias registradas."
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
 					<f:facet name="header">  
@@ -39,39 +39,50 @@
 						headerText="Fuente" filterMatchMode="contains">
 						<h:outputText value="#{item.fuente}" />
 					</p:column>
-
+					
+					<p:column filterBy="#{item.rol}" sortBy="#{item.rol}"
+						headerText="Rol" filterMatchMode="contains">
+						<h:outputText value="#{item.rol.nombre}" />
+					</p:column>
+					
 					<p:column style="width:40px">
 						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
 							<p:commandButton id="selectButton" update=":form:display"
-								oncomplete="itemDialog.show()" image="images/btn_edit.png"
+								oncomplete="itemDialog.show()" icon="ui-icon-pencil"
 								title="Editar">
 								<f:setPropertyActionListener value="#{item}"
-									target="#{noticiaManage.selectNoticia}" />
+									target="#{noticiaManage.noticia}" />
 							</p:commandButton>
 						</h:panelGrid>
 					</p:column>
 				</p:dataTable>
 
-				<p:dialog header="Detalle Contenido" widgetVar="itemDialog"
+				<p:dialog header="Detalle Noticia" widgetVar="itemDialog"
 					resizable="false" id="itemDlg" showEffect="fade"
 					hideEffect="explode" modal="true" width="420">
 
 					<h:panelGrid id="display" columns="2" cellpadding="4"
 						style="margin:0 auto;">
-						<h:outputText value="ID:" style="display:none;" />
-						<h:inputText value="#{noticiaManage.selectNoticia.id}"
-							style="display:none;" />
+						
+						<h:outputText value="ID:"/>
+						<h:inputText value="#{noticiaManage.noticia.id}" />
 
 						<h:outputText value="Titulo:" />
-						<p:inputText value="#{noticiaManage.selectNoticia.titulo}" />
+						<p:inputText value="#{noticiaManage.noticia.titulo}" />
 
-						<h:outputText value="Descripción: *" />
+						<h:outputText value="Descripción:" />
 						<p:inputTextarea rows="6" cols="28"
-							value="#{noticiaManage.selectNoticia.descripcion}"
+							value="#{noticiaManage.noticia.descripcion}"
 							maxlength="150" autoResize="false" />
 
-						<h:outputText value="Fuente: *" />
-						<p:inputText value="#{noticiaManage.selectNoticia.fuente}" />
+						<h:outputText value="Fuente:" />
+						<p:inputText value="#{noticiaManage.noticia.fuente}" />
+						
+						<h:outputText value="Rol:" />
+						<h:selectOneMenu value="#{noticiaManage.noticia.rol}">
+							<f:selectItems value="#{noticiaManage.roles}" var="rol"
+								itemLabel="#{rol.nombre}" itemValue="#{rol.id}" />
+						</h:selectOneMenu>
 
 					</h:panelGrid>
 

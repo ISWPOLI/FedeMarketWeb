@@ -10,6 +10,11 @@ import javax.faces.context.FacesContext;
 import com.qantica.fedemarket.ejb.RolBeanRemote;
 import com.qantica.fedemarket.entidad.Rol;
 
+/**
+ * Manejador para la entidad Rol
+ * @author Juan Rubiano
+ * 13/11/16
+ */
 @ManagedBean
 public class RolManage {
 	
@@ -30,13 +35,13 @@ public class RolManage {
 			
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_INFO,
-							"Verifique La Información Suministrada!",
+							"Verifique la información suministrada.",
 							"Rol Adicionado"));
 		}else{
 			FacesContext.getCurrentInstance().addMessage("formul",new FacesMessage(
 					FacesMessage.SEVERITY_ERROR,
-							"Verifique La Información Suministrada!",
-							"Alguno de los campos está incompleto!"));
+							"Verifique la información suministrada-",
+							"Por favor ingrese el nombre del rol."));
 		}
 	}
 	
@@ -49,7 +54,7 @@ public class RolManage {
 	public void limpiar(){
 		rol = new Rol();
 		nombre = "";
-		estado = false;
+		estado = true;
 	}
 	
 	public String getNombre() {

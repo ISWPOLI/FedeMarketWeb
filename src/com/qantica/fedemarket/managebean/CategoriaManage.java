@@ -109,12 +109,12 @@ public class CategoriaManage {
 	}
 
 	/**
-	 * verifica si el archivo es una imagen
+	 * Verifica si el archivo es una imagen
 	 * @return boolean true si es una imagen, false si no
 	 */
 	private boolean verificarExtension() {
 		if(file == null ){
-			System.out.println("Paila el archivo entro nulo");
+			System.out.println("La imagen entro nulo");
 			return false;
 		}else{
 			String[] img = ExtensionArchivo.contenidoImg;

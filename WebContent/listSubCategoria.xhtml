@@ -21,7 +21,8 @@
 					rows="10" emptyMessage="No Existen Contenidos!"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
-					<f:facet name="header">  
+					
+					<f:facet name="header"> 
             			SubCategorias Disponibles
         			</f:facet>
 
@@ -33,7 +34,7 @@
 					<p:column style="width:40px">
 						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
 							<p:commandButton id="selectButton" update=":form:display"
-								oncomplete="itemDialog.show()" icon="images/btn_edit.png"
+								oncomplete="itemDialog.show()" icon="ui-icon-pencil"
 								title="Editar">
 								<f:setPropertyActionListener value="#{item}"
 									target="#{subCategoriaAltertManager.subcategoria}" />
@@ -46,8 +47,12 @@
 					resizable="false" id="itemDlg" showEffect="fade"
 					hideEffect="explode" modal="true" width="400">
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> refs/remotes/origin/master
+=======
+					
 >>>>>>> refs/remotes/origin/master
 					<h:panelGrid id="display" columns="2" cellpadding="4"
 						style="margin:0 auto;">
@@ -57,13 +62,12 @@
 							style="display:none;" />
 
 						<h:outputText value="Nombre:" />
-						<p:inputText
-							value="#{subCategoriaAltertManager.subcategoria.nombre}" />
-
-						<h:outputText value="Estado:" />
-						<p:selectBooleanCheckbox
-							value="#{subCategoriaAltertManager.subcategoria.estado}" />
-
+						<p:inputText value="#{subCategoriaAltertManager.subcategoria.nombre}" />
+						
+						<h:outputText value="Estado:" />	
+							<p:selectBooleanCheckbox
+								value="#{subCategoriaAltertManager.subcategoria.estado}" />
+								
 					</h:panelGrid>
 
 					<p:commandButton value="Aceptar"

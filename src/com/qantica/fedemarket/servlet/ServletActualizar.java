@@ -75,7 +75,7 @@ public class ServletActualizar extends HttpServlet {
 		try {
 			System.out.println("Entro a --> Servlet Actualizar");
 
-			List<Contenido> misContenidos = miEJB.listarContenido(0);
+			List<Contenido> misContenidos = miEJB.listarContenidoServlet(0,0);
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 
