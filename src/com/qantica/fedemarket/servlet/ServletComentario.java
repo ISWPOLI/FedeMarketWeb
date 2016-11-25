@@ -2,6 +2,7 @@ package com.qantica.fedemarket.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 
 import javax.ejb.EJB;
 import javax.naming.Context;
@@ -17,6 +18,7 @@ import com.qantica.fedemarket.ejb.ComentarioBeanRemote;
 import com.qantica.fedemarket.ejb.UsuarioBeanRemote;
 import com.qantica.fedemarket.entidad.Comentario;
 import com.qantica.fedemarket.entidad.Usuario;
+import com.qantica.fedemarket.mundo.FechaActual;
 
 /**
  * Servlet para la entidad Comentario
@@ -66,10 +68,11 @@ public class ServletComentario extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id_app"));
 			int valoracion = Integer.parseInt(request.getParameter("valoracion"));
 			String descripcion = request.getParameter("comentario");
-			//String uid = request.getParameter("uid");
 			String uname = request.getParameter("uname");
+			Charset.forName("UTF-8").encode(descripcion);
+			Charset.forName("UTF-8").encode(uname);
 			
-			miEJB.adicionarComentario(id, user, valoracion, descripcion, uname);
+			miEJB.adicionarComentario(id, user, valoracion, descripcion, uname, FechaActual.timestamp());
 			
 			miEJB.actualizarRating(id);
 			response.setContentType("text/html;charset=UTF-8");
