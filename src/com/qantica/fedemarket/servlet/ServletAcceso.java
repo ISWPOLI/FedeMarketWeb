@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qantica.fedemarket.ejb.IngresoBeanRemote;
 import com.qantica.fedemarket.ejb.UsuarioBeanRemote;
+import com.qantica.fedemarket.entidad.Ingreso;
+import com.qantica.fedemarket.entidad.Usuario;
+import com.qantica.fedemarket.mundo.FechaActual;
 
 /**
  * Servlet que registra el ingreso al sistema
- * 15/10/2016
- * Colombia
- * Q-antica Ltda.
+ * 24/11/2016
  */
 
 public class ServletAcceso extends HttpServlet {
@@ -28,15 +30,14 @@ public class ServletAcceso extends HttpServlet {
 	
 	@EJB(name="UsuarioBean/remote")
 	UsuarioBeanRemote miEJB;
+	
+	@EJB(name="IngresoBean/remote")
+	IngresoBeanRemote miEJBIngreso;
 
 	public void init() {
 		try {
-
 			context = new InitialContext();
-			miEJB = (UsuarioBeanRemote) context.lookup("UsuarioBean/remote");
-
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -54,9 +55,8 @@ public class ServletAcceso extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		try {
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		/*try {
 
 			PrintWriter out = response.getWriter();
 			out.println("<500>");
@@ -64,6 +64,21 @@ public class ServletAcceso extends HttpServlet {
 
 		} catch (Exception e) {
 			System.out.println(e);
+		}*/
+		
+		PrintWriter out = response.getWriter();	
+		try {
+			String idUser = request.getParameter("idusuario");
+			System.out.println("Usuario ID: "+idUser);
+			Usuario user = miEJB.buscarUsuario(Integer.parseInt(idUser));
+			Ingreso ing = new Ingreso();
+			ing.setFecha(FechaActual.timestamp());
+			ing.setUsuario(user);
+			miEJBIngreso.addRegistro(ing);
+			out.print("<200>");
+		} catch (Exception e) {
+			e.printStackTrace();	
+			out.print("<503>");
 		}
 	}
 
@@ -71,14 +86,26 @@ public class ServletAcceso extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		
 		try {
-			String nombre = request.getParameter("nombre_usuario");
-			miEJB.addRegistro(nombre,"NULL");
+			PrintWriter out = response.getWriter();	
+			
+			String idUser;
+			idUser = request.getParameter("idusuario");
+			System.out.println("Usuario ID: "+idUser);
+			
+			Usuario user = miEJB.buscarUsuario(Integer.parseInt(idUser));
+			
+			Ingreso ing = new Ingreso();
+			ing.setFecha(FechaActual.timestamp());
+			ing.setUsuario(user);
+			miEJBIngreso.addRegistro(ing);
+			out.print("<200>");
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
+			PrintWriter out = response.getWriter();	
+			out.print("<503>");
 		}
 	}
 
