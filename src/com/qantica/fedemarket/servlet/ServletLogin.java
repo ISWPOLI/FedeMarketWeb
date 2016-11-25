@@ -58,9 +58,7 @@ public class ServletLogin extends HttpServlet {
 			Usuario aux = miEJB.login(nombre, contrasena);
 			
 			//Defino la decodificación de la respuesta		
-			response.setHeader("Content-Type", "text/html; charset=UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");
 			
 			PrintWriter out = response.getWriter();
 			if(aux != null){
@@ -90,9 +88,7 @@ public class ServletLogin extends HttpServlet {
 			Usuario aux = miEJB.login(nombre, contrasena);
 			
 			//Defino la decodificación de la respuesta
-			response.setHeader("Content-Type", "text/html; charset=UTF-8"); 
-			response.setContentType("text/html;charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");			
+			response.setContentType("text/html;charset=UTF-8");		
 			
 			PrintWriter out = response.getWriter();
 			
