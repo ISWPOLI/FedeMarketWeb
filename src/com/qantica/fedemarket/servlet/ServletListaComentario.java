@@ -46,18 +46,17 @@ public class ServletListaComentario extends HttpServlet {
 	/**
 	 * GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
 	 * POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			
+		try {			
 			int id = Integer.parseInt(request.getParameter("aid"));
 			ArrayList<Comentario> result = (ArrayList<Comentario>) miEJB.listarComentarios(id);
 
@@ -65,7 +64,6 @@ public class ServletListaComentario extends HttpServlet {
 			PrintWriter out = response.getWriter();
 
 			for (int i = 0; i < result.size(); i++) {
-
 				out.println(result.get(i).getNombre() + "|"
 						+ result.get(i).getDescripcion() + "|"
 						+ result.get(i).getRating() + ">");
@@ -74,9 +72,8 @@ public class ServletListaComentario extends HttpServlet {
 			out.close();
 
 		} catch (Exception e) {
-
 			PrintWriter out = response.getWriter();
-			out.println("<011>");
+			out.println("<503>");
 			out.close();
 			e.printStackTrace();
 		}

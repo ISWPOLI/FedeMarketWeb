@@ -43,48 +43,22 @@ public class ServletAcceso extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ServletAcceso() {
 		super();
 
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * GET
 	 */
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		/*try {
-
-			PrintWriter out = response.getWriter();
-			out.println("<500>");
-			out.close();
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}*/
 		
-		PrintWriter out = response.getWriter();	
-		try {
-			String idUser = request.getParameter("idusuario");
-			System.out.println("Usuario ID: "+idUser);
-			Usuario user = miEJB.buscarUsuario(Integer.parseInt(idUser));
-			Ingreso ing = new Ingreso();
-			ing.setFecha(FechaActual.timestamp());
-			ing.setUsuario(user);
-			miEJBIngreso.addRegistro(ing);
-			out.print("<200>");
-		} catch (Exception e) {
-			e.printStackTrace();	
-			out.print("<503>");
-		}
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * POST
 	 */
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		

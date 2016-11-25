@@ -20,7 +20,8 @@ import com.qantica.fedemarket.entidad.Contenido;
 import com.qantica.fedemarket.entidad.Noticia;
 
 /**
- * Servlet que gestiona la entidad Contenido
+ * Servlet lista el contenido de acuerdo al id de la categoria y de la
+ * subcategoria
  * @author Juan Rubiano
  * 22/11/2016
  *
@@ -48,81 +49,9 @@ public class ServletContenido extends HttpServlet {
 	/**
 	 * GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		/*try {
-
-			PrintWriter out = response.getWriter();
-			out.println("<500>");
-			out.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-
-		try {
-
-
-			int idSubc;
-			String isSubc = request.getParameter("subcategoria");
-			int idCate = Integer.valueOf(request.getParameter("categoria"));;
-
-			if(isSubc == ""){
-				idSubc = 0;
-			}else{
-				idSubc = Integer.valueOf(request.getParameter("subcategoria"));
-			}
-
-			List<Contenido> misContenidos = miEJB.listarContenidoServlet(idSubc, idCate);
-			response.setContentType("text/html;charset=UTF-8");
-
-			PrintWriter out = response.getWriter();
-			
-			if(misContenidos.isEmpty()){
-				out.println("<404>");
-			}else{
-				for (int i = 0; i < misContenidos.size(); i++) {
-
-					if (misContenidos.get(i).getSubCategoria() != null) {
-
-						out.println(misContenidos.get(i).getId() + "|"
-								+ misContenidos.get(i).getNombre() + "|"
-								+ misContenidos.get(i).getDescripcion() + "|"
-								+ misContenidos.get(i).getDescargas() + "|"
-								+ misContenidos.get(i).getVersion() + "|"
-								+ +misContenidos.get(i).getCategoria().getId()
-								+ "|"
-								+ misContenidos.get(i).getSubCategoria().getId()
-								+ "|" + misContenidos.get(i).getCaptura_1() + "|"
-								+ misContenidos.get(i).getCaptura_2() + "|"
-								+ misContenidos.get(i).getIcono() + "|"
-								+ misContenidos.get(i).getRating() + "|"
-								+ misContenidos.get(i).getEstado() + ">");
-					} else {
-						out.println(misContenidos.get(i).getId() + "|"
-								+ misContenidos.get(i).getNombre() + "|"
-								+ misContenidos.get(i).getDescripcion() + "|"
-								+ misContenidos.get(i).getDescargas() + "|"
-								+ misContenidos.get(i).getVersion() + "|"
-								+ +misContenidos.get(i).getCategoria().getId()
-								+ "|0|" + misContenidos.get(i).getCaptura_1() + "|"
-								+ misContenidos.get(i).getCaptura_2() + "|"
-								+ misContenidos.get(i).getIcono() + "|"
-								+ misContenidos.get(i).getRating() + "|"
-								+ misContenidos.get(i).getEstado() + ">");
-					}
-				}
-				out.close();
-			}			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			PrintWriter out = response.getWriter();
-			out.print("<503>");
-		}
-
-
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
@@ -131,7 +60,6 @@ public class ServletContenido extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 			try {
-
 
 				int idSubc;
 				String isSubc = request.getParameter("subcategoria");
@@ -144,6 +72,8 @@ public class ServletContenido extends HttpServlet {
 				}
 
 				List<Contenido> misContenidos = miEJB.listarContenidoServlet(idSubc, idCate);
+				
+				//Defino la decodificación de la respuesta
 				response.setContentType("text/html;charset=UTF-8");
 
 				PrintWriter out = response.getWriter();

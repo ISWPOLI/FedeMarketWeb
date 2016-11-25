@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
 import javax.ejb.EJB;
@@ -26,7 +27,7 @@ import com.qantica.fedemarket.entidad.Descarga;
 import com.qantica.fedemarket.entidad.Usuario;
 
 /**
- * Servlet para descargar un archivo, insertar log de descarga
+ * Servlet para descargar un archivo, inserta log de descarga
  * @author Juan Rubiano
  * 09/11/2016
  */
@@ -50,11 +51,7 @@ public class ServletDescarga extends HttpServlet {
 
 	public void init() {
 		try {
-			context = new InitialContext();			
-			miEJBContenido = (ContenidoBeanRemote) context.lookup("ContenidoBean/remote");
-			miEJBComentario = (ComentarioBeanRemote) context.lookup("ComentarioBean/remote");
-			miEJBUsuario = (UsuarioBeanRemote) context.lookup("UsuarioBean/remote");
-			miEJBDescarga = (DescargaBeanRemote) context.lookup("DescargaBean/remote");
+			context = new InitialContext();
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -140,11 +137,12 @@ public class ServletDescarga extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 }

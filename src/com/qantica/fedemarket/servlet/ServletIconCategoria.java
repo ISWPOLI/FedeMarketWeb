@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.naming.Context;
 import javax.servlet.ServletException;
@@ -17,8 +18,6 @@ import com.qantica.fedemarket.conf.Conf;
 /**
  * Servlet que realiza la descarga del ícono de la categoria
  * @author Juan Rubiano
- * Q-antica Ltda.
- * Colombia.
  * 10/08/2016
  */
 
@@ -72,7 +71,8 @@ public class ServletIconCategoria extends HttpServlet {
 	/**
 	 * POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -17,54 +18,44 @@ import com.qantica.fedemarket.ejb.ContenidoBeanLocal;
 import com.qantica.fedemarket.entidad.Contenido;
 
 /**
- * Servlet implementation class ServletDestacados
+ * Servlet que lista los destacados según el número de descargas 
+ * @author Juan Rubiano
+ * 25/11/2016
+ *
  */
 public class ServletDestacados extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	Context context;
+
+	@EJB(name="ContenidoBean/remote")
 	ContenidoBeanLocal miEJB;
 
 	public void init() {
 		try {
-
 			context = new InitialContext();
-			miEJB = (ContenidoBeanLocal) context.lookup("ContenidoBean/local");
-
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ServletDestacados() {
 		super();
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
 		try {
 
@@ -108,6 +99,8 @@ public class ServletDestacados extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.print("<503>");
 		}
 
 	}

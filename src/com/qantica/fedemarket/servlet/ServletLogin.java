@@ -27,58 +27,30 @@ public class ServletLogin extends HttpServlet {
 	public void init() {
 		try {			
 			context = new InitialContext();
-			miEJB = (UsuarioBeanRemote) context.lookup("UsuarioBean/remote");	
 		} catch (NameNotFoundException e) {			
 		}catch (Exception e) {
 			System.out.println("Excepción");
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public ServletLogin() {
 		super();
 
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		try {
-			//Defino los parametros que capturo por GET
-			String nombre = request.getParameter("nombre_usuario");
-			String contrasena = request.getParameter("contrasena");
-			
-			//Declaro un Usuario que contendrá la respuesta del bean 
-			Usuario aux = miEJB.login(nombre, contrasena);
-			
-			//Defino la decodificación de la respuesta		
-			response.setContentType("text/html;charset=UTF-8");
-			
-			PrintWriter out = response.getWriter();
-			if(aux != null){
-				out.println(aux.toString());
-			}else{
-				out.println("false");
-			}
-			
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException, NullPointerException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, NullPointerException {
 		try {
 			//Defino los parametros que capturo por POST
 			String nombre = request.getParameter("nombre_usuario");
@@ -99,6 +71,8 @@ public class ServletLogin extends HttpServlet {
 			}			
 			out.close();
 		} catch (Exception e) {
+			PrintWriter out = response.getWriter();
+			out.print("<503>");
 			e.printStackTrace();
 		}
 	}

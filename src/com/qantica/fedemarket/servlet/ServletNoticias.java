@@ -17,10 +17,8 @@ import com.qantica.fedemarket.ejb.NoticiaBeanRemote;
 import com.qantica.fedemarket.entidad.Noticia;
 
 /**
- * 
+ * Servlet que lista las noticias de acuerdo al rol
  * @author Juan Rubiano
- * Q-antica Ltda.
- * Colombia
  * 18/08/2016
  */
 
@@ -35,7 +33,6 @@ public class ServletNoticias extends HttpServlet {
 	public void init() {
 		try {
 			context = new InitialContext();
-			miEJB = (NoticiaBeanRemote) context.lookup("NoticiaBean/remote");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -48,51 +45,37 @@ public class ServletNoticias extends HttpServlet {
 	/**
 	 * Petición GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		try {
-			String rol = request.getParameter("rol");
-			int idRol = Integer.parseInt(rol);
-			List<Noticia> misNoticias = miEJB.listarNoticias(idRol);
-
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-
-			for (int i = 0; i < misNoticias.size(); i++) {
-				out.println(misNoticias.get(i).getTitulo() + "|"
-						+ misNoticias.get(i).getDescripcion() + "|"
-						+ misNoticias.get(i).getFecha() + ">");
-			}
-
-			out.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
 	 * Petición POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-
 			String rol = request.getParameter("rol");
 			int idRol = Integer.parseInt(rol);
 			List<Noticia> misNoticias = miEJB.listarNoticias(idRol);
 
 			response.setContentType("text/html;charset=UTF-8");
+			
 			PrintWriter out = response.getWriter();
+
 			for (int i = 0; i < misNoticias.size(); i++) {
 				out.println(misNoticias.get(i).getTitulo() + "|"
 						+ misNoticias.get(i).getDescripcion() + "|"
 						+ misNoticias.get(i).getFecha() + ">");
 			}
+
 			out.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.print("<503>");
 		}
 	}
 

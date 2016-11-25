@@ -51,24 +51,8 @@ public class ServletCategoria extends HttpServlet {
 	 * @para response
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		try {
-			String rol = request.getParameter("rol");		
-			List<Categoria> misContenidos = miEJB.listarCategoriaMovil(Integer.parseInt(rol));
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();			
-
-			if(misContenidos.isEmpty()){
-				out.println("<404>");
-			}else{
-				for (int i = 0; i < misContenidos.size(); i++) {
-					out.println(misContenidos.get(i).getId() + "|"
-							+ misContenidos.get(i).getNombre() +"|"+misContenidos.get(i).getIcono()+ ">");
-				}
-			}		
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
@@ -94,6 +78,8 @@ public class ServletCategoria extends HttpServlet {
 			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.print("<503>");
 		}
 
 

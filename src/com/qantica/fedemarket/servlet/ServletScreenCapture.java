@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -27,20 +28,15 @@ public class ServletScreenCapture extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	Context context;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public ServletScreenCapture() {
 		super();
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * GET
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
 		// descarga del archivo
 		response.setContentType("text/html;charset=UTF-8");
@@ -65,22 +61,26 @@ public class ServletScreenCapture extends HttpServlet {
 				}
 			} catch (IOException ioe) {
 				ioe.printStackTrace(System.out);
+				PrintWriter out = response.getWriter();
+				out.print("<503>");
 			}
 
 			outs.flush();
 			outs.close();
 			in.close();
 
-		} finally {
-			// out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			PrintWriter out = response.getWriter();
+			out.print("<503>");
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * POST
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 }

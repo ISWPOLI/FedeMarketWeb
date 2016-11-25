@@ -21,7 +21,7 @@ import com.qantica.fedemarket.entidad.Usuario;
 import com.qantica.fedemarket.mundo.FechaActual;
 
 /**
- * Servlet para la entidad Comentario
+ * Servlet que inserta un comentario
  * @author Juan Rubiano
  * 22/11/206
  *
@@ -40,9 +40,7 @@ public class ServletComentario extends HttpServlet {
 	
 	public void init() {
 		try {
-
 			context = new InitialContext();
-
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -56,6 +54,8 @@ public class ServletComentario extends HttpServlet {
 	 * GET
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		out.print("<500>");
 	}
 
 	/**
@@ -77,13 +77,13 @@ public class ServletComentario extends HttpServlet {
 			miEJB.actualizarRating(id);
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<010>");
+			out.println("<200>");
 			out.close();
 			
 		} catch (Exception e) {
 			
 			PrintWriter out = response.getWriter();
-			out.println("<011>");
+			out.println("<503>");
 			out.close();
 			e.printStackTrace();
 		}
