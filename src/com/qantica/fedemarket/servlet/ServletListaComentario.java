@@ -61,6 +61,7 @@ public class ServletListaComentario extends HttpServlet {
 			ArrayList<Comentario> result = (ArrayList<Comentario>) miEJB.listarComentarios(id);
 
 			response.setContentType("text/html;charset=UTF-8");
+			
 			PrintWriter out = response.getWriter();
 
 			for (int i = 0; i < result.size(); i++) {

@@ -60,14 +60,14 @@ public class ServletLogin extends HttpServlet {
 			Usuario aux = miEJB.login(nombre, contrasena);
 			
 			//Defino la decodificación de la respuesta
-			response.setContentType("text/html;charset=UTF-8");		
+			response.setContentType("text/html;charset=UTF-8");
 			
 			PrintWriter out = response.getWriter();
 			
 			if(aux != null){
 				out.println(aux.toString());
 			}else{
-				out.println("false");
+				out.print("<404>");
 			}			
 			out.close();
 		} catch (Exception e) {

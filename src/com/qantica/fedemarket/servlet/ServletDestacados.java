@@ -28,7 +28,7 @@ public class ServletDestacados extends HttpServlet {
 
 	Context context;
 
-	@EJB(name="ContenidoBean/remote")
+	@EJB(name="ContenidoBean/local")
 	ContenidoBeanLocal miEJB;
 
 	public void init() {
